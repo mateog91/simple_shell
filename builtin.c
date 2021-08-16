@@ -17,7 +17,7 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
 
 	while (cases[i].function_name != NULL)
 	{
-		if (*(cases[i].function_name) == *str_to_check)
+		if (_strcmp(cases[i].function_name, str_to_check) == 0)
 			break;
 		i++;
 	}
