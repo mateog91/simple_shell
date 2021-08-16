@@ -32,7 +32,7 @@ typedef struct functions
 int (*check_built_in(char *str_to_check))(char *);
 
 int ls_function(char *str);
-
+char *getPath(char **env);
 
 /* String operation functions  */
 int _strcmp(char *s1, char *s2);
