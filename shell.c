@@ -1,9 +1,14 @@
 #include "shell.h"
 
-
+/**
+ * deln - find a \n char and chage it by NULL
+ * @line: pointer to a buffer
+ * Return: Nothing - void
+ */
 void deln(char *line)
 {
 	int i = 0;
+
 	while (line[i])
 	{
 		if (line[i] == '\n')
@@ -16,6 +21,13 @@ void deln(char *line)
 
 }
 
+/**
+ * assignTokens - Function that fill a **char with a parse resource
+ * @lineReaded: Buffer readed by stdi
+ * @tokens: **char to fill
+ * @delim: Delim of the function
+ * Return: Nothing - void
+ */
 void assignTokens(char *lineReaded, char **tokens, const char *delim)
 {
 	char *token = NULL;
@@ -29,10 +41,15 @@ void assignTokens(char *lineReaded, char **tokens, const char *delim)
 		token = strtok(NULL, delim);
 		tokens[count] = token;
 	}
-	printf("count is %i\n", count);
 	tokens[count] = NULL;
 }
-char **creat_tokens(char *buffer, const char *delim)
+/**
+ * **create_tokens - use memory dinamicly to create an empty **char
+ * @buffer: Buffer used to create tokens
+ * @delim: Delim of the function
+ * Return: empty matrix where will be store parse data
+ */
+char **create_tokens(char *buffer, const char *delim)
 {
 	char **tokens = NULL;
 	int i = 0, count_words = 1;
@@ -49,42 +66,39 @@ char **creat_tokens(char *buffer, const char *delim)
 		perror("Error: tokens not created");
 		return (NULL);
 	}
-	
+
 	return (tokens);
 }
+/**
+ * main - function that runs a simple shell
+ * @argc: Number of arguments gived by user in main shell
+ * @argv: params gived by user in main shell
+ * @env: Enviroment variables stored like matrix (char **)
+ * Return: Always 0;
+ */
 
-
-
-
-int main(int argc, char **argv, char **env)
+int main(int argc __attribute__((unused)), char **argv, char **env)
 {
 	char *line = NULL;
 	size_t len_line;
 	char *prompt = "$ ";
-	char *arg[1];
 	pid_t child_pid;
 	int status;
 	char **tokens = NULL;
 	const char *delim = " ";
 
-	UNUSED(argc);
 	UNUSED(argv);
 	UNUSED(env);
 	UNUSED(line);
 	UNUSED(len_line);
-	UNUSED(arg);
 
 	while (1)
 	{
 		write(1, prompt, strlen(prompt));
 		getline(&line, &len_line, stdin);
 		deln(line);
-		tokens = creat_tokens(line, delim);
-		
+		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
-		arg[0] = line;
-		arg[1] = NULL;
-		
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -94,13 +108,12 @@ int main(int argc, char **argv, char **env)
 		wait(&status);
 		if (child_pid == 0)
 		{
-			if(execve(tokens[0], tokens, NULL) == -1)
+			if (execve(tokens[0], tokens, NULL) == -1)
 			{
-				perror("......Error:");
+				perror("Error: ");
 			}
 		}
 	}
-
 
 	return (0);
 }
