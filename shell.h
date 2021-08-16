@@ -14,5 +14,18 @@
 
 #define UNUSED(x) (void)(x)
 
+/**
+ * struct functions - struct to compute buitl in functions
+ * @function_name: Name of the function
+ * @f: Function to execute
+ */
+
+typedef struct functions
+{
+	char *function_name;
+	int (*f)(char *);
+
+} built_in;
+
 
 #endif /* _SHELL_H_ */
