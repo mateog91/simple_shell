@@ -30,5 +30,5 @@ char *getPath(char **env)
                         break;
                 i++;
         }
-        return (env[i]);
+        return (env[i] + 5);
 }
