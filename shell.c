@@ -22,6 +22,20 @@ void deln(char *line)
 }
 
 /**
+ *
+ */
+
+void printMatrix(char **matrix)
+{
+	int i = 0;
+
+	while (matrix[i] != NULL)
+	{
+		printf("Token[%i] is: %s\n", i, matrix[i]);
+		i++;
+	}
+}
+/**
  * assignTokens - Function that fill a **char with a parse resource
  * @lineReaded: Buffer readed by stdi
  * @tokens: **char to fill
@@ -87,6 +101,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char **tokens = NULL;
 	const char *delim = " ";
 	int (*f)(char *);
+	char *pathPtr;
+	char **tokenDirectory;
+
 
 	UNUSED(argv);
 	UNUSED(env);
@@ -95,11 +112,20 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 
 	while (1)
 	{
-		write(1, prompt, _strlen(prompt));
+		write(STDOUT_FILENO, prompt, _strlen(prompt));
 		getline(&line, &len_line, stdin);
 		deln(line);
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
+
+		pathPtr = getPath(env);
+		tokenDirectory = create_tokens(pathPtr, ":");
+		assignTokens(pathPtr, tokenDirectory, ":");
+		printMatrix(tokenDirectory);
+		printf("i am token Directory: %p\n", tokenDirectory[0]);
+		/*printf("PATH is %s\n", pathPtr);
+		printTokens(pathPtr, ":");
+		printf("PATH is %s\n", );*/
 		child_pid = fork();
 		if (child_pid == -1)
 		{
