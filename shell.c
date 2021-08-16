@@ -95,7 +95,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 
 	while (1)
 	{
-		write(1, prompt, strlen(prompt));
+		write(1, prompt, _strlen(prompt));
 		getline(&line, &len_line, stdin);
 		deln(line);
 		tokens = create_tokens(line, delim);
