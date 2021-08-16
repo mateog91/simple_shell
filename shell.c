@@ -111,7 +111,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (child_pid == 0)
 		{
 			f = check_built_in(tokens[0]);
-			if (f)
+			if (f != NULL)
 			{
 				printf("tokens[0]: %s\n", tokens[0]);
 				f(tokens[0]);
