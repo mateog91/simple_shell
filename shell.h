@@ -27,6 +27,6 @@ typedef struct functions
 
 } built_in;
 
-int (*check_buit_in(char *str_to_check))(char *);
+int (*check_built_in(char *str_to_check))(char *);
 
 #endif /* _SHELL_H_ */
