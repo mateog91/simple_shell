@@ -1,6 +1,8 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
+/* Compiling an executing program by:*/
+/* gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,5 +32,10 @@ typedef struct functions
 int (*check_built_in(char *str_to_check))(char *);
 
 int ls_function(char *str);
+
+
+/* String operation functions  */
+int _strcmp(char *s1, char *s2);
+int _strlen(char *str);
 
 #endif /* _SHELL_H_ */
