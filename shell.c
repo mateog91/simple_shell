@@ -86,6 +86,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int status;
 	char **tokens = NULL;
 	const char *delim = " ";
+	int (*f)(char *);
 
 	UNUSED(argv);
 	UNUSED(env);
@@ -106,11 +107,21 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			return (1);
 		}
 		wait(&status);
+
 		if (child_pid == 0)
 		{
-			if (execve(tokens[0], tokens, NULL) == -1)
+			f = check_built_in(tokens[0]);
+			if (f)
 			{
-				perror("Error: ");
+				printf("tokens[0]: %s\n", tokens[0]);
+				f(tokens[0]);
+			}
+			else
+			{
+				if (execve(tokens[0], tokens, NULL) == -1)
+				{
+					perror("Error: ");
+				}
 			}
 		}
 	}
