@@ -11,17 +11,29 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
 	int i = 0;
 
 	built_in cases[] = {
-		{ls, ls_function},
+		{"ls", ls_function},
 		{NULL, NULL}
-	}
+	};
 
-		while (cases[i].function_name)
-		{
-			if (*(cases[i].function_name) == *str_to_check)
-				break;
-			i++;
-		}
+	while (cases[i].function_name != NULL)
+	{
+		if (*(cases[i].function_name) == *str_to_check)
+			break;
+		i++;
+	}
 
 	return (cases[i].f);
 
+}
+
+/**
+ * ls_function - function that prints an input string
+ * @str: String to print
+ * Return: 1 if is executed
+ */
+int ls_function(char *str)
+{
+	printf("%s", str);
+
+	return (1);
 }

@@ -29,4 +29,6 @@ typedef struct functions
 
 int (*check_built_in(char *str_to_check))(char *);
 
+int ls_function(char *str);
+
 #endif /* _SHELL_H_ */
