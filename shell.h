@@ -37,5 +37,6 @@ char *getPath(char **env);
 /* String operation functions  */
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
+char *str_concat(char *s1, char *s2)
 
 #endif /* _SHELL_H_ */
