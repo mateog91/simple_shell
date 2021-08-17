@@ -104,6 +104,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *pathPtr;
 	char **tokenDirectory;
 
+	struct stat buf;
+
+	printf("El estado de la funcion seria: %i", stat("/bin/ls", &buf));
 
 	UNUSED(argv);
 	UNUSED(env);
@@ -123,6 +126,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		assignTokens(pathPtr, tokenDirectory, ":");
 		printMatrix(tokenDirectory);
 		printf("i am token Directory: %p\n", tokenDirectory[0]);
+
 		/*printf("PATH is %s\n", pathPtr);
 		printTokens(pathPtr, ":");
 		printf("PATH is %s\n", );*/
