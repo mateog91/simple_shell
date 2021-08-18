@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /**
  * main - function that runs a simple shell
  * @argc: Number of arguments gived by user in main shell
