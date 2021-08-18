@@ -36,6 +36,11 @@ int (*check_built_in(char *str_to_check))(char *);
 int ls_function(char *str);
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
+
+
+/* Manage memory functions */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
 /* String operation functions  */
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
