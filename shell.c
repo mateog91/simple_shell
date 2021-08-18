@@ -127,7 +127,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
 		/*free(line);*/
-		
+
 		/* Check if command is executable */
 		if (stat(tokens[0], &buf) == 0)
 		{
@@ -141,7 +141,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		assignTokens(pathPtr, tokenDirectory, ":");
 		printMatrix(tokenDirectory);
 		printf("i am token Directory: %p\n", tokenDirectory[0]);
-		
+
 		/* Find not buil-in in PATH */
 		/* Concatenate token line with PATH token*/
 		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
