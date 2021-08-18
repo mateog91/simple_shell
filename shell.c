@@ -106,7 +106,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *executablePath;
 	struct stat buf;
 
-	printf("El estado de la funcion seria: %i", stat("/bin/cd", &buf));
+	printf("El estado de la funcion seria: %i", stat("/bin//ls", &buf));
 
 	UNUSED(argv);
 	UNUSED(env);
@@ -123,6 +123,14 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		deln(line);
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
+		/*free(line);*/
+		
+		/* Check if command is executable */
+		if (stat(tokens[0], &buf) == 0)
+		{
+			/*Here goes executable function*/
+		}
+
 		/* get PATH*/
 		pathPtr = getPath(env);
 		/* Parse PATH */

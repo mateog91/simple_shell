@@ -20,8 +20,10 @@ char *find_command_in_path(char **PATH, char *command )
 
 	while (PATH[i] != NULL)
 	{
+		/*concat = str_concat(command) */
 		/*Concatanate matrix[i] with command*/
 		concat = str_concat(PATH[i], command);
+		printf("concat[%i] is %s\n",i, concat);
 		/* Find if concat is in PATH*/
 		if ((stat(concat, &buf)) == 0)
 		{
