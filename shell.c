@@ -104,6 +104,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *pathPtr;
 	char **tokenDirectory;
 	char *executablePath;
+	int sign;
 	struct stat buf;
 
 	printf("El estado de la funcion seria: %i", stat("/bin//ls", &buf));
@@ -118,7 +119,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		/*Prompt*/
 		write(STDOUT_FILENO, prompt, _strlen(prompt));
 		/* Get line */
-		getline(&line, &len_line, stdin);
+		sign = getline(&line, &len_line, stdin);
+		if(sign < 0)
+			exit(1);
 		/* Parse line into tokens*/
 		deln(line);
 		tokens = create_tokens(line, delim);
