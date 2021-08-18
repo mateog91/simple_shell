@@ -96,8 +96,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *line = NULL;
 	size_t len_line;
 	char *prompt = "$ ";
-	pid_t child_pid;
-	int status;
+	/*pid_t child_pid;
+	int status;*/
 	char **tokens = NULL;
 	const char *delim = " ";
 	int (*f)(char *);
@@ -163,7 +163,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (executablePath != NULL)
 		{
 			/*Here goes executable function*/
-		
+			printf("running executable through PATH concatenation\n");
+			executable_function(executablePath, tokens);
+			
+			/* THIS IS THE ORIGINAL
 			child_pid = fork();
 			if (child_pid == -1)
 			{
@@ -171,16 +174,16 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 				return (1);
 			}
 			wait(&status);
-			/*free(line);*/
 			if (child_pid == 0)
 			{
 				
-				/*si algo es tokens[0]*/
+				si algo es tokens[0]
 				if (execve(executablePath, tokens, NULL) == -1)
 				{
 					perror("Error: ");
 				}
-			}	
+			}
+			*/
 		}
 
 	}
