@@ -106,7 +106,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *executablePath;
 	int sign;
 	struct stat buf;
-	
+	int flag =0;	
 	
 	UNUSED(argv);
 	UNUSED(env);
@@ -143,23 +143,27 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			executable_function(tokens[0], tokens);
 			continue;
 		}
+		
+		if (flag != 1)
+		{
+			/* get PATH*/
+			pathPtr = _strdup(getPath(env));
+			/* Parse PATH */
+			tokenDirectory = create_tokens(pathPtr, ":");
+			assignTokens(pathPtr, tokenDirectory, ":");
+				/*printMatrix(tokenDirectory);
+				printf("i am token Directory: %p\n", tokenDirectory[0]);*/
 
-		/* get PATH*/
-		pathPtr = _strdup(getPath(env));
-		/* Parse PATH */
-		tokenDirectory = create_tokens(pathPtr, ":");
-		assignTokens(pathPtr, tokenDirectory, ":");
-			/*printMatrix(tokenDirectory);
-			printf("i am token Directory: %p\n", tokenDirectory[0]);*/
-
-		/* Find not buil-in in PATH */
-		/* Concatenate token line with PATH token*/
-		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
-			/*printf("executablePath is: %p\n", executablePath);
-			printf("PATH is %s\n", pathPtr);
-			printTokens(pathPtr, ":");
-			printf("PATH is %s\n", );*/
-		/* Check if */
+			/* Find not buil-in in PATH */
+			/* Concatenate token line with PATH token*/
+			executablePath = find_command_in_path(tokenDirectory, tokens[0]);
+				/*printf("executablePath is: %p\n", executablePath);
+				printf("PATH is %s\n", pathPtr);
+				printTokens(pathPtr, ":");
+				printf("PATH is %s\n", );*/
+			/* Check if */
+			flag = 1;
+		}
 		if (executablePath != NULL)
 		{
 			/*Here goes executable function*/
