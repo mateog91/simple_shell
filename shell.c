@@ -139,6 +139,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (stat(tokens[0], &buf) == 0)
 		{
 			/*Here goes executable function*/
+			printf("I am running executable function \n");
+			executable_function(tokens[0], tokens);
+			continue;
 		}
 
 		/* get PATH*/

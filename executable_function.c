@@ -11,7 +11,7 @@ int executable_function(char *command, char **tokens)
 		perror("Error:");
 		return (1);
 	}
-	wait(&status)
+	wait(&status);
 	/*free(line);*/
 	if (child_pid == 0)
 	{
