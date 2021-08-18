@@ -1,3 +1,5 @@
+#include "shell.h"
+
 int executable_function(char *command, char **tokens)
 {
 	pid_t child_pid;

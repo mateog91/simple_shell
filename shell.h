@@ -36,6 +36,7 @@ int (*check_built_in(char *str_to_check))(char *);
 int ls_function(char *str);
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
+int executable_function(char *command, char **tokens)
 
 
 /* Manage memory functions */
