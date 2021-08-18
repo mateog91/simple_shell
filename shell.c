@@ -167,7 +167,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			}
 			else
 			{
-				if (execve(tokens[0], tokens, NULL) == -1)
+				/*si algo es tokens[0]*/
+				if (execve(executablePath, tokens, NULL) == -1)
 				{
 					perror("Error: ");
 				}
