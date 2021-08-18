@@ -11,7 +11,7 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
 	int i = 0;
 
 	built_in cases[] = {
-		{"ls", ls_function},
+		{"cd", ls_function},
 		{NULL, NULL}
 	};
 
