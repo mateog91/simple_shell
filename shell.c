@@ -103,10 +103,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int (*f)(char *);
 	char *pathPtr;
 	char **tokenDirectory;
-
+	char *executablePath;
 	struct stat buf;
 
-	printf("El estado de la funcion seria: %i", stat("/bin/ls", &buf));
+	printf("El estado de la funcion seria: %i", stat("/bin/cd", &buf));
 
 	UNUSED(argv);
 	UNUSED(env);
@@ -115,18 +115,26 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 
 	while (1)
 	{
+		/*Prompt*/
 		write(STDOUT_FILENO, prompt, _strlen(prompt));
+		/* Get line */
 		getline(&line, &len_line, stdin);
+		/* Parse line into tokens*/
 		deln(line);
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
-
+		/* get PATH*/
 		pathPtr = getPath(env);
+		/* Parse PATH */
 		tokenDirectory = create_tokens(pathPtr, ":");
 		assignTokens(pathPtr, tokenDirectory, ":");
 		printMatrix(tokenDirectory);
 		printf("i am token Directory: %p\n", tokenDirectory[0]);
-
+		
+		/* Find not buil-in in PATH */
+		/* Concatenate token line with PATH token*/
+		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
+		printf("executablePath is: %p\n", executablePath);
 		/*printf("PATH is %s\n", pathPtr);
 		printTokens(pathPtr, ":");
 		printf("PATH is %s\n", );*/
