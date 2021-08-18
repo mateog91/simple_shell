@@ -48,4 +48,10 @@ int _strlen(char *str);
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
 
+/* Functions that were in main */
+void deln(char *line);
+void printMatrix(char **matrix);
+void assignTokens(char *lineReaded, char **tokens, const char *delim);
+char **create_tokens(char *buffer, const char *delim);
+
 #endif /* _SHELL_H_ */
