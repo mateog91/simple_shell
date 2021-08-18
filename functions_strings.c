@@ -64,13 +64,11 @@ char *str_concat(char *s1, char *s2)
 
 	/* Recorrer s1 y s2 y calcular tamaño total */
 	for (i = 0; s1[i]; i++)
-	{
-	}
+		;
 	size = i;
 
 	for (i = 0; s2[i]; i++)
-	{
-	}
+		;
 	size = size + i + 1;
 
 	/* Allocate memory for new string */

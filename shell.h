@@ -33,10 +33,10 @@ int (*check_built_in(char *str_to_check))(char *);
 
 int ls_function(char *str);
 char *getPath(char **env);
-
+char *find_command_in_path(char **PATH, char *command);
 /* String operation functions  */
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
-char *str_concat(char *s1, char *s2)
+char *str_concat(char *s1, char *s2);
 
 #endif /* _SHELL_H_ */
