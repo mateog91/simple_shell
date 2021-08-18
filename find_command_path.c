@@ -26,11 +26,11 @@ char *find_command_in_path(char **PATH, char *command )
 		concat1 = str_concat("/", command);
 		concat = str_concat(PATH[i], concat1);
 
-		printf("concat[%i] is %s\n",i, concat);
+		/*printf("concat[%i] is %s\n",i, concat);*/
 		/* Find if concat is in PATH*/
 		if ((stat(concat, &buf)) == 0)
 		{
-			printf("Found concat link at PATH[%i], %s", i, concat);
+			/*printf("Found concat link at PATH[%i], %s", i, concat);*/
 			free(concat1);
 			return (concat);
 		}
