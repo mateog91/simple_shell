@@ -125,7 +125,15 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		deln(line);
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
-		/*free(line);*/
+		/* check if is built in*/
+		f = check_built_in(tokens[0]);	
+		if (f != NULL)
+			{
+				/*printf("tokens[0]: %s\n", tokens[0]);*/
+				f(tokens[0]);
+				continue;
+			}
+
 
 		/* Check if command is executable */
 		if (stat(tokens[0], &buf) == 0)
@@ -148,32 +156,30 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			printf("PATH is %s\n", pathPtr);
 			printTokens(pathPtr, ":");
 			printf("PATH is %s\n", );*/
-		child_pid = fork();
-		if (child_pid == -1)
+		/* Check if */
+		if (executablePath != NULL)
 		{
-			perror("Error:");
-			return (1);
-		}
-		wait(&status);
-		free(pathPtr);
-
-		if (child_pid == 0)
-		{
-			f = check_built_in(tokens[0]);
-			if (f != NULL)
+			/*Here goes executable function*/
+		
+			child_pid = fork();
+			if (child_pid == -1)
 			{
-				/*printf("tokens[0]: %s\n", tokens[0]);*/
-				f(tokens[0]);
+				perror("Error:");
+				return (1);
 			}
-			else
+			wait(&status);
+			/*free(line);*/
+			if (child_pid == 0)
 			{
+				
 				/*si algo es tokens[0]*/
 				if (execve(executablePath, tokens, NULL) == -1)
 				{
 					perror("Error: ");
 				}
-			}
+			}	
 		}
+
 	}
 
 	return (0);
