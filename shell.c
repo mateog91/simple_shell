@@ -101,14 +101,13 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char **tokens = NULL;
 	const char *delim = " ";
 	int (*f)(char *);
-	char *pathPtr;
+	char *pathPtr = NULL;
 	char **tokenDirectory;
 	char *executablePath;
 	int sign;
 	struct stat buf;
-
-	printf("El estado de la funcion seria: %i", stat("/bin//ls", &buf));
-
+	
+	
 	UNUSED(argv);
 	UNUSED(env);
 	UNUSED(line);
@@ -135,20 +134,20 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 
 		/* get PATH*/
-		pathPtr = getPath(env);
+		pathPtr = _strdup(getPath(env));
 		/* Parse PATH */
 		tokenDirectory = create_tokens(pathPtr, ":");
 		assignTokens(pathPtr, tokenDirectory, ":");
-		printMatrix(tokenDirectory);
-		printf("i am token Directory: %p\n", tokenDirectory[0]);
+			/*printMatrix(tokenDirectory);
+			printf("i am token Directory: %p\n", tokenDirectory[0]);*/
 
 		/* Find not buil-in in PATH */
 		/* Concatenate token line with PATH token*/
 		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
-		printf("executablePath is: %p\n", executablePath);
-		/*printf("PATH is %s\n", pathPtr);
-		printTokens(pathPtr, ":");
-		printf("PATH is %s\n", );*/
+			/*printf("executablePath is: %p\n", executablePath);
+			printf("PATH is %s\n", pathPtr);
+			printTokens(pathPtr, ":");
+			printf("PATH is %s\n", );*/
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -156,13 +155,14 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			return (1);
 		}
 		wait(&status);
+		free(pathPtr);
 
 		if (child_pid == 0)
 		{
 			f = check_built_in(tokens[0]);
 			if (f != NULL)
 			{
-				printf("tokens[0]: %s\n", tokens[0]);
+				/*printf("tokens[0]: %s\n", tokens[0]);*/
 				f(tokens[0]);
 			}
 			else
