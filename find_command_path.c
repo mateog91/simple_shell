@@ -31,6 +31,7 @@ char *find_command_in_path(char **PATH, char *command )
 			return (concat);
 		}
 		i++;
+		free(concat);
 	}
 	/* If it is not found return NULL */
 	return (NULL);
