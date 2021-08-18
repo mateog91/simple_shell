@@ -45,5 +45,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
 char *str_concat(char *s1, char *s2);
+char *_strdup(char *str)
 
 #endif /* _SHELL_H_ */
