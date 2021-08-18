@@ -4,6 +4,7 @@
 /* Compiling an executing program by:*/
 /* gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh*/
 /*  valgrind --tool=memcheck --vgdb=yes --vgdb-error=0 ./prog */
+/* valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all */
 
 #include <stdio.h>
 #include <stdlib.h>
