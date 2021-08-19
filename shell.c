@@ -16,7 +16,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	/*pid_t child_pid;
 	int status;*/
 	char **tokens = NULL;
-	const char *delim = " ";
+	const char *delim = " \n";
 	int (*f)(char *);
 	char *pathPtr = NULL;
 	char **tokenDirectory;
@@ -39,7 +39,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if(sign < 0)
 			exit(1);
 		/* Parse line into tokens*/
-		deln(line);
+		/*deln(line);*/
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
 
@@ -50,7 +50,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
 			{
-				/*printf("tokens[0]: %s\n", tokens[0]);*/
 				f(tokens[0]);
 				continue;
 			}
