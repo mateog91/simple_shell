@@ -23,8 +23,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *executablePath;
 	int sign;
 	struct stat buf;
-	int flag =0;	
-	
+	int flag =0;
+
 	UNUSED(argv);
 	UNUSED(env);
 	UNUSED(line);
@@ -43,7 +43,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
 		/* check if is built in*/
-		f = check_built_in(tokens[0]);	
+		f = check_built_in(tokens[0]);
 		if (f != NULL)
 			{
 				/*printf("tokens[0]: %s\n", tokens[0]);*/
@@ -60,7 +60,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			executable_function(tokens[0], tokens);
 			continue;
 		}
-		/* Optimization by running this only onces */	
+		/* Optimization by running this only onces */
 		if (flag != 1)
 		{
 			/* get PATH*/
@@ -80,13 +80,13 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			printTokens(pathPtr, ":");
 			printf("PATH is %s\n", );*/
 		/* Check if */
-		
+
 		if (executablePath != NULL)
 		{
 			/*Here goes executable function*/
 			printf("running executable through PATH concatenation\n");
 			executable_function(executablePath, tokens);
-			
+
 		}
 
 	}
