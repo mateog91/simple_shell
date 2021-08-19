@@ -15,12 +15,12 @@
 char *find_command_in_path(char **PATH, char *command )
 {
 	int i = 0;
-	char *concat;
+	char *concat = NULL;
 	struct stat buf;
 
 	while (PATH[i] != NULL)
 	{
-		char *concat1;
+		char *concat1 = NULL;
 		/*concat = str_concat(command) */
 		/*Concatanate matrix[i] with command*/
 		concat1 = str_concat("/", command);
@@ -37,6 +37,8 @@ char *find_command_in_path(char **PATH, char *command )
 		i++;
 		free(concat);
 		free(concat1);
+		concat = NULL;
+		concat1 = NULL;
 	}
 	/* If it is not found return NULL */
 	return (NULL);
