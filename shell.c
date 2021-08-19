@@ -44,8 +44,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		assignTokens(line, tokens, delim);
 
 		if (!tokens[0])
+		{
+			free(line);
+			free(tokens);
 			continue;
-
+		}
 		/* check if is built in*/
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
