@@ -10,18 +10,12 @@
 
 int main(int argc __attribute__((unused)), char **argv, char **env)
 {
-	char *line = NULL;
+	char *line = NULL, *pathPtr = NULL, *prompt = "$ ", *executablePath;
+	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
-	char *prompt = "$ ";
-	char **tokens = NULL;
 	const char *delim = " \n";
-	int (*f)(char *);
-	char *pathPtr = NULL;
-	char **tokenDirectory;
-	char *executablePath;
-	int sign;
+	int sign, flag = 0, (*f)(char *);
 	struct stat buf;
-	int flag = 0;
 
 	UNUSED(argv);
 	while (1)
