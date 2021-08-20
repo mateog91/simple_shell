@@ -66,12 +66,20 @@ void assignTokens(char *lineReaded, char **tokens, const char *delim)
 char **create_tokens(char *buffer, const char *delim)
 {
 	char **tokens = NULL;
-	int i = 0, count_words = 1;
+	int i = 0, j = 0, count_words = 1;
+
+	if (buffer == NULL)
+		return(NULL);
 
 	while (buffer[i] != '\0')
 	{
-		if (buffer[i] == *delim)
-			count_words++;
+		while (delim[j] != '\0')
+		{
+			if (buffer[i] == delim[j])
+				count_words++;
+			j++;
+		}
+		j = 0;
 		i++;
 	}
 	tokens = malloc(sizeof(buffer) * (count_words + 1));
@@ -80,6 +88,5 @@ char **create_tokens(char *buffer, const char *delim)
 		perror("Error: tokens not created");
 		return (NULL);
 	}
-
 	return (tokens);
 }
