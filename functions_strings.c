@@ -29,9 +29,10 @@ int _strcmp(char *s1, char *s2)
 int _strlen(char *str)
 {
 	int i = 0;
+
 	while (str[i])
 		i++;
-	
+
 	return (i);
 }
 

@@ -20,7 +20,10 @@ void deln(char *line)
 	}
 }
 /**
- *
+ * printMatrix - Function used to print a whole
+ * ** char
+ * @matrix: pointer to a pointer
+ * Return - Void - print
  */
 
 void printMatrix(char **matrix)
