@@ -24,10 +24,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int flag = 0;
 
 	UNUSED(argv);
-	UNUSED(env);
-	UNUSED(line);
-	UNUSED(len_line);
-
 	while (1)
 	{
 		/*Prompt*/
