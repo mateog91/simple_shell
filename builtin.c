@@ -1,5 +1,6 @@
 #include "shell.h"
 
+extern char **environ;
 /**
  * check_built_in - Check if a string gived is a built in function
  * @str_to_check: Splited buffer whic correspond to position 0
@@ -14,6 +15,7 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
 		{"cd", ls_function},
 		{".", ls_function},
 		{"env", function_env},
+		{"exit", function_exit},
 		{NULL, NULL}
 	};
 
@@ -45,8 +47,16 @@ int ls_function(char *str)
  *
  * Return: 1 if success
  */
-int function_env(**env)
+int function_env(char *env)
 {
-	printMatrix(env);
+	UNUSED(env);
+
+	printMatrix(environ);
+	return (1);
+}
+int function_exit(char *command)
+{
+	UNUSED(command);
+	exit(1);
 	return (1);
 }

@@ -39,7 +39,8 @@ int executable_function(char *command, char **tokens);
 
 /* Built in functions*/
 int ls_function(char *str);
-int function_env(**env);
+int function_env(char *env);
+int function_exit(char *command);
 
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
