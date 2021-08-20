@@ -13,6 +13,7 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
 	built_in cases[] = {
 		{"cd", ls_function},
 		{".", ls_function},
+		{"env", function_env},
 		{NULL, NULL}
 	};
 
@@ -36,5 +37,16 @@ int ls_function(char *str)
 {
 	printf("%s\n", str);
 
+	return (1);
+}
+/**
+ * function_env - function that prints enviorment variables
+ * @env: Double pointer to enviormental variables
+ *
+ * Return: 1 if success
+ */
+int function_env(**env)
+{
+	printMatrix(env);
 	return (1);
 }

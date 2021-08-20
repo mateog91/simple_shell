@@ -33,11 +33,13 @@ typedef struct functions
 
 int (*check_built_in(char *str_to_check))(char *);
 
-int ls_function(char *str);
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
 int executable_function(char *command, char **tokens);
 
+/* Built in functions*/
+int ls_function(char *str);
+int function_env(**env);
 
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
