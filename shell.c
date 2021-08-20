@@ -13,8 +13,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *line = NULL;
 	size_t len_line;
 	char *prompt = "$ ";
-	/*pid_t child_pid;
-	int status;*/
 	char **tokens = NULL;
 	const char *delim = " \n";
 	int (*f)(char *);
@@ -23,7 +21,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *executablePath;
 	int sign;
 	struct stat buf;
-	int flag =0;
+	int flag = 0;
 
 	UNUSED(argv);
 	UNUSED(env);
@@ -36,10 +34,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		write(STDOUT_FILENO, prompt, _strlen(prompt));
 		/* Get line */
 		sign = getline(&line, &len_line, stdin);
-		if(sign < 0)
+		if (sign < 0)
 			exit(1);
-		/* Parse line into tokens*/
-		/*deln(line);*/
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
 
@@ -52,12 +48,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		/* check if is built in*/
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
-			{
-				f(tokens[0]);
-				continue;
-			}
-
-
+		{
+			f(tokens[0]);
+			continue;
+		}
 		/* Check if command is executable */
 		if (stat(tokens[0], &buf) == 0)
 		{
@@ -74,17 +68,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			/* Parse PATH */
 			tokenDirectory = create_tokens(pathPtr, ":");
 			assignTokens(pathPtr, tokenDirectory, ":");
-				/*printMatrix(tokenDirectory);
-				printf("i am token Directory: %p\n", tokenDirectory[0]);*/
 			flag = 1;
 		}
 		/* Find not buil-in in PATH */
-		/* Concatenate token line with PATH token*/
+		/* Concatenate token line with PATH token */
 		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
-			/*printf("executablePath is: %p\n", executablePath);
-			printf("PATH is %s\n", pathPtr);
-			printTokens(pathPtr, ":");
-			printf("PATH is %s\n", );*/
 		/* Check if */
 
 		if (executablePath != NULL)
@@ -92,10 +80,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			/*Here goes executable function*/
 			printf("running executable through PATH concatenation\n");
 			executable_function(executablePath, tokens);
-
 		}
-
 	}
-
 	return (0);
 }
