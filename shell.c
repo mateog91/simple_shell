@@ -101,6 +101,15 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			free(executablePath);
 			executablePath = NULL;
 		}
+		else
+		{
+			free(line);
+			free(tokens);
+			line = NULL;
+			tokens = NULL;
+			free(executablePath);
+			executablePath = NULL;
+		}
 	}
 	return (0);
 }
