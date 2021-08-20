@@ -37,8 +37,18 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		/* Get line */
 		sign = getline(&line, &len_line, stdin);
 		if(sign < 0)
+		{
+			free(line);
+			free(tokens);
+			if (flag == 1)
+			{
+				free(pathPtr);
+				free(tokenDirectory);
+				free(executablePath);
+			}
+
 			exit(1);
-		
+		}
 		/* Parse line into tokens*/
 		/*deln(line);*/
 		tokens = create_tokens(line, delim);
@@ -50,15 +60,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			free(tokens);
 			line = NULL;
 			tokens = NULL;
-			if (flag == 1)
-			{
-				free(pathPtr);
-				free(tokenDirectory);
-				free(executablePath);
-				pathPtr = NULL;
-				tokenDirectory = NULL;
-				executablePath = NULL;
-			}
 			continue;
 		}
 		/* check if is built in*/
@@ -118,7 +119,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			tokens = NULL;
 			free(executablePath);
 			executablePath = NULL;
-
 		}
 
 	}
