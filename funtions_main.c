@@ -20,7 +20,9 @@ void deln(char *line)
 	}
 }
 /**
- *
+ * printMatrix - Print element by element in a gived Matrix
+ * @matrix: Memory Address of a matrix
+ * Return: Void
  */
 
 void printMatrix(char **matrix)

@@ -6,13 +6,14 @@
  * @command: String with input command
  *
  * Description:
- * Searches on the matrix that contains all the PATH tokens, concatenates them with the command, and tests if the command is in that curren PATH token.
+ * Searches on the matrix that contains all the PATH tokens, concatenates
+ * them with the command, and tests if the command is in that curren PATH token
  *
  * Return:
  * If found, returns theconcatenation string in which the input command is.
  * If not found, returns NULL.
  */
-char *find_command_in_path(char **PATH, char *command )
+char *find_command_in_path(char **PATH, char *command)
 {
 	int i = 0;
 	char *concat = NULL;
