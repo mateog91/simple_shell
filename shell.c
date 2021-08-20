@@ -44,7 +44,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
 
-		if (tokens[0] != NULL)
+		if (tokens[0] == NULL)
 		{
 			free(line);
 			free(tokens);
