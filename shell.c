@@ -38,15 +38,27 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		sign = getline(&line, &len_line, stdin);
 		if(sign < 0)
 			exit(1);
+		
 		/* Parse line into tokens*/
 		/*deln(line);*/
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
 
-		if (!tokens[0])
+		if (tokens[0] != NULL)
 		{
 			free(line);
 			free(tokens);
+			line = NULL;
+			tokens = NULL;
+			if (flag == 1)
+			{
+				free(pathPtr);
+				free(tokenDirectory);
+				free(executablePath);
+				pathPtr = NULL;
+				tokenDirectory = NULL;
+				executablePath = NULL;
+			}
 			continue;
 		}
 		/* check if is built in*/
@@ -54,6 +66,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (f != NULL)
 			{
 				f(tokens[0]);
+				free(line);
+				free(tokens);
+				line = NULL;
+				tokens = NULL;
 				continue;
 			}
 
@@ -64,6 +80,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			/*Here goes executable function*/
 			printf("I am running executable function \n");
 			executable_function(tokens[0], tokens);
+			free(line);
+			free(tokens);
+			line = NULL;
+			tokens = NULL;
 			continue;
 		}
 		/* Optimization by running this only onces */
@@ -92,6 +112,12 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			/*Here goes executable function*/
 			printf("running executable through PATH concatenation\n");
 			executable_function(executablePath, tokens);
+			free(line);
+			free(tokens);
+			line = NULL;
+			tokens = NULL;
+			free(executablePath);
+			executablePath = NULL;
 
 		}
 
