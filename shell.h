@@ -2,9 +2,9 @@
 #define _SHELL_H_
 
 /* Compiling an executing program by:*/
-/* gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh*/
+/* alias shell="gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh" */
 /*  valgrind --tool=memcheck --vgdb=yes --vgdb-error=0 ./prog */
-/* valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all */
+/* alias valgr="valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./hsh" */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,6 +41,8 @@ int executable_function(char *command, char **tokens);
 
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void free_all(char **tokens, char **tokenDirectory,
+              char *line, char *pathPtr, char *executablePath);
 
 /* String operation functions  */
 int _strcmp(char *s1, char *s2);

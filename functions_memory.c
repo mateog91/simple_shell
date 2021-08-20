@@ -41,3 +41,42 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	return (pointer);
 }
+
+/**
+ * free_all - Frees all allocated memory variables
+ * @tokens: Matrix with Tokenized line
+ * @tokenDirectory: Matrix with Tokenized Path
+ * @line: stdio input variable
+ * @pathPtr: Copy of Path envirometn variable
+ * @executablePath: Path concatenated with command
+ * Return: Nothing
+ */
+void free_all(char **tokens, char **tokenDirectory,
+	      char *line, char *pathPtr, char *executablePath)
+{
+	if (tokens)
+	{
+		free(tokens);
+		tokens = NULL;
+	}
+	if (tokenDirectory)
+	{
+		free(tokenDirectory);
+		tokenDirectory = NULL;
+	}
+	if (line)
+	{
+		free(line);
+		line = NULL;
+	}
+	if (pathPtr)
+	{
+		free(pathPtr);
+		pathPtr = NULL;
+	}
+	if (executablePath)
+	{
+		free(executablePath);
+		executablePath = NULL;
+	}
+}
