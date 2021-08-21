@@ -17,6 +17,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int sign, flag = 0, (*f)(char *);
 	struct stat buf;
 
+	setenv("PRUEBA", "CONTENIDO0", 0);
+	setenv("PRUEBA", "CONTENIDO1", 1);
+	setenv("PRUEBA", "CONTENIDO2", 0);
+	setenv("PRUEBA1", "CONTENIDO1", 1);
+
 	UNUSED(argv);
 	while (1)
 	{
@@ -90,13 +95,13 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		{
 
 /*Here goes executable function*/
-				printf("I am running executable function \n");
-				executable_function(tokens[0], tokens);
-				free(line);
-				free(tokens);
-				line = NULL;
-				tokens = NULL;
-				continue;
+			printf("I am running executable function \n");
+			executable_function(tokens[0], tokens);
+			free(line);
+			free(tokens);
+			line = NULL;
+			tokens = NULL;
+			continue;
 		}
 		else
 		{
