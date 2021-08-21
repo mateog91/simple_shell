@@ -50,8 +50,8 @@ char **copy_enviroment(char **env);
 void free_matrix(char **matrix);
 
 /* String basic functions  */
-int _putchar(char c)
-void _puts(char *str)
+int _putchar(char c);
+void _puts(char *str);
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
 
