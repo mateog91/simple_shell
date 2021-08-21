@@ -1,6 +1,7 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
+extern char **environ;
 /* Compiling an executing program by:*/
 /* alias shell="gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh" */
 /*  valgrind --tool=memcheck --vgdb=yes --vgdb-error=0 ./prog */
@@ -61,6 +62,10 @@ void print_number(int n);
 /* String basic functions  */
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
+
+/* Errors print functions*/
+
+void print_error_not_found(char *argv0, char *tokens0, int countExec);
 
 /* String Malloc functions */
 char *str_concat(char *s1, char *s2);

@@ -1,6 +1,5 @@
 #include "shell.h"
 
-extern char **environ;
 /**
  * check_built_in - Check if a string gived is a built in function
  * @str_to_check: Splited buffer whic correspond to position 0

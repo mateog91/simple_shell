@@ -14,19 +14,20 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
 	const char *delim = " \n";
-	int sign, flag = 0, (*f)(char *), temp;
+	int sign, flag = 0, (*f)(char *), temp, countExec = 0;
 	struct stat buf;
-
+	
 	UNUSED(argv);
 	while (1)
 	{
+		countExec++;
 /*Prompt*/
 		if (isatty(fileno(stdin))){
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 		}
 /* Get line */
 		sign = getline(&line, &len_line, stdin);
-		if (sign < 0)
+		if (sign < 0) /* Is EOF ?*/
 		{
 			free(line);
 			free(tokens);
@@ -96,10 +97,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			free(executablePath);
 			executablePath = NULL;
 		}
-		else if (stat(tokens[0], &buf) == 0)
+		else if (stat(tokens[0], &buf) == 0)/* is command executable at local file?*/
 		{
-
-/*Here goes executable function*/
 			printf("I am running executable function \n");
 			executable_function(tokens[0], tokens);
 			free(line);
@@ -110,6 +109,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 		else
 		{
+			/*_puts2(argv[0]); print_number(countExec);*/
+			print_error_not_found(argv[0], tokens[0], countExec);
 			free(line);
 			free(tokens);
 			line = NULL;
