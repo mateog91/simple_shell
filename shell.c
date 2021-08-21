@@ -58,18 +58,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			tokens = NULL;
 			continue;
 		}
+
 /* Check if command is executable */
-		if (stat(tokens[0], &buf) == 0)
-		{
-/*Here goes executable function*/
-			printf("I am running executable function \n");
-			executable_function(tokens[0], tokens);
-			free(line);
-			free(tokens);
-			line = NULL;
-			tokens = NULL;
-			continue;
-		}
+		/*	if (stat(tokens[0], &buf) == 0 && access(tokens[0], X_OK) == 1)*/
 /* Optimization by running this only onces */
 		if (flag != 1)
 		{
@@ -94,6 +85,18 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			tokens = NULL;
 			free(executablePath);
 			executablePath = NULL;
+		}
+		else if (stat(tokens[0], &buf) == 0)
+		{
+
+/*Here goes executable function*/
+				printf("I am running executable function \n");
+				executable_function(tokens[0], tokens);
+				free(line);
+				free(tokens);
+				line = NULL;
+				tokens = NULL;
+				continue;
 		}
 		else
 		{

@@ -57,6 +57,8 @@ int function_env(char *env)
 int function_exit(char *command)
 {
 	UNUSED(command);
+	printf("Estoy en exit");
 	exit(1);
+	printf("Me ves ?????");
 	return (1);
 }
