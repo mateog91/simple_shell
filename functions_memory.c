@@ -80,3 +80,19 @@ void free_all(char **tokens, char **tokenDirectory,
 		executablePath = NULL;
 	}
 }
+
+
+void free_exit(char **tokens, char **tokenDirectory, char *line,
+	       char *pathPtr, char *executablePath, int flag)
+{
+	free(line);
+	free(tokens);
+	if (flag == 1)
+	{
+		free(pathPtr);
+		free(tokenDirectory);
+		free(executablePath);
+	}
+	exit(1);
+
+}

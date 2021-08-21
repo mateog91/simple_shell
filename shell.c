@@ -51,7 +51,26 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
 		{
-			f(tokens[0]);
+			int temp;
+
+			temp = f(tokens[0]);
+			if (temp == 50)
+			{
+				/*
+				free(line);
+				free(tokens);
+				if (flag == 1)
+				{
+					free(pathPtr);
+					free(tokenDirectory);
+					free(executablePath);
+				}
+				exit(1);
+*/
+				free_exit(tokens, tokenDirectory, line,
+					  pathPtr, executablePath, flag);
+			}
+			printf("Retorno= %i\n", temp);
 			free(line);
 			free(tokens);
 			line = NULL;

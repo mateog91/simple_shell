@@ -48,6 +48,8 @@ void free_all(char **tokens, char **tokenDirectory,
 char *line, char *pathPtr, char *executablePath);
 char **copy_enviroment(char **env);
 void free_matrix(char **matrix);
+void free_exit(char **tokens, char **tokenDirectory, char *line,
+               char *pathPtr, char *executablePath, int flag);
 
 /* String basic functions  */
 int _putchar(char c);
