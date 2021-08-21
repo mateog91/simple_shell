@@ -5,6 +5,7 @@
 /* alias shell="gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh" */
 /*  valgrind --tool=memcheck --vgdb=yes --vgdb-error=0 ./prog */
 /* alias valgr="valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./hsh" */
+/* alias log="git log --all --decorate --oneline --graph" */
 
 #include <stdio.h>
 #include <stdlib.h>
