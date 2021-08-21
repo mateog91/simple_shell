@@ -14,14 +14,16 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
 	const char *delim = " \n";
-	int sign, flag = 0, (*f)(char *);
+	int sign, flag = 0, (*f)(char *), temp;
 	struct stat buf;
 
 	UNUSED(argv);
 	while (1)
 	{
 /*Prompt*/
-		write(STDOUT_FILENO, prompt, _strlen(prompt));
+		if (isatty(fileno(stdin))){
+			write(STDOUT_FILENO, prompt, _strlen(prompt));
+		}
 /* Get line */
 		sign = getline(&line, &len_line, stdin);
 		if (sign < 0)
@@ -51,26 +53,15 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
 		{
-			int temp;
 
-			temp = f(tokens[0]);
-			if (temp == 50)
+			if ((temp = f(tokens[0])) == 50)/*Exec & stores retVal*/
 			{
-				/*
-				free(line);
-				free(tokens);
-				if (flag == 1)
-				{
-					free(pathPtr);
-					free(tokenDirectory);
-					free(executablePath);
-				}
-				exit(1);
-*/
 				free_exit(tokens, tokenDirectory, line,
 					  pathPtr, executablePath, flag);
 			}
-			printf("Retorno= %i\n", temp);
+			else
+				printf("Retorno= %i\n", 1);
+
 			free(line);
 			free(tokens);
 			line = NULL;
@@ -79,7 +70,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 
 /* Check if command is executable */
-		/*	if (stat(tokens[0], &buf) == 0 && access(tokens[0], X_OK) == 1)*/
+/*access(tokens[0], X_OK) == 1)*/
 /* Optimization by running this only onces */
 		if (flag != 1)
 		{
@@ -96,7 +87,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (executablePath != NULL)
 		{
 /*Here goes executable function*/
-			printf("running executable through PATH concatenation\n");
+			/*printf("running executable through PATH concatenation\n");*/
 			executable_function(executablePath, tokens);
 			free(line);
 			free(tokens);
