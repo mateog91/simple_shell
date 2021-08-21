@@ -51,7 +51,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
 		{
-			f(tokens[0]);
+			f(tokens[0], line, tokens);
 			free(line);
 			free(tokens);
 			line = NULL;

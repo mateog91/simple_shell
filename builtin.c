@@ -1,13 +1,12 @@
 #include "shell.h"
 
-extern char **environ;
 /**
  * check_built_in - Check if a string gived is a built in function
  * @str_to_check: Splited buffer whic correspond to position 0
  * Return: status 1 if found 0 if not
  *
  */
-int (*check_built_in(char *str_to_check))(char *str_to_check)
+int (*check_built_in(char *str_to_check))(char *str_to_check, char *line, char **tokens)
 {
 	int i = 0;
 
@@ -35,9 +34,11 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
  * @str: String to print
  * Return: 1 if is executed
  */
-int ls_function(char *str)
+int ls_function(char *str, char *line, char **tokens)
 {
 	printf("%s\n", str);
+	UNUSED(line);
+	UNUSED(tokens);
 
 	return (1);
 }
@@ -47,17 +48,21 @@ int ls_function(char *str)
  *
  * Return: 1 if success
  */
-int function_env(char *env)
+int function_env(char *env, char *line, char **tokens)
 {
 	UNUSED(env);
+	UNUSED(line);
+	UNUSED(tokens);
 
 	printMatrix(environ);
 	return (1);
 }
-int function_exit(char *command)
+int function_exit(char *command, char *line, char **tokens)
 {
 	UNUSED(command);
 	printf("Estoy en exit");
+	free(line);
+	free(tokens);
 	exit(1);
 	printf("Me ves ?????");
 	return (1);
