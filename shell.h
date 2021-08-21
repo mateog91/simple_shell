@@ -52,9 +52,13 @@ void free_matrix(char **matrix);
 void free_exit(char **tokens, char **tokenDirectory, char *line,
                char *pathPtr, char *executablePath, int flag);
 
-/* String basic functions  */
+/* Print Functions*/
 int _putchar(char c);
 void _puts(char *str);
+void _puts2(char *str);/*WITHOUT NEW LINE*/
+void print_number(int n);
+
+/* String basic functions  */
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
 

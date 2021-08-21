@@ -27,6 +27,18 @@ void _puts(char *str)
         _putchar('\n');
 }
 /**
+ * _puts2 - prints a string WITHOUT newline
+ * @str: - pointer to first character of string
+ *
+ */
+void _puts2(char *str)
+{
+        int i;
+
+        for (i = 0; str[i] != '\0'; i++)
+                _putchar(str[i]);
+}
+/**
  * print_number - Function that prints an integer number
  *@n: int to print
  *
