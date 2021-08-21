@@ -1,25 +1,6 @@
 #include "shell.h"
 
 /**
- * deln - find a \n char and chage it by NULL
- * @line: pointer to a buffer
- * Return: Nothing - void
- */
-void deln(char *line)
-{
-	int i = 0;
-
-	while (line[i])
-	{
-		if (line[i] == '\n')
-		{
-			line[i] = '\0';
-			break;
-		}
-		i++;
-	}
-}
-/**
  * printMatrix - Print element by element in a gived Matrix
  * @matrix: Memory Address of a matrix
  * Return: Void
@@ -31,7 +12,7 @@ void printMatrix(char **matrix)
 
 	while (matrix[i] != NULL)
 	{
-		printf("Token[%i] is: %s\n", i, matrix[i]);
+		_puts(matrix[i]);
 		i++;
 	}
 }
@@ -69,7 +50,7 @@ char **create_tokens(char *buffer, const char *delim)
 	int i = 0, j = 0, count_words = 1;
 
 	if (buffer == NULL)
-		return(NULL);
+		return (NULL);
 
 	while (buffer[i] != '\0')
 	{
