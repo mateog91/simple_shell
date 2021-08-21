@@ -17,11 +17,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int sign, flag = 0, (*f)(char *);
 	struct stat buf;
 
-	setenv("PRUEBA", "CONTENIDO0", 0);
-	setenv("PRUEBA", "CONTENIDO1", 1);
-	setenv("PRUEBA", "CONTENIDO2", 0);
-	setenv("PRUEBA1", "CONTENIDO1", 1);
-
 	UNUSED(argv);
 	while (1)
 	{
