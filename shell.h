@@ -46,6 +46,8 @@ int function_exit(char *command);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_all(char **tokens, char **tokenDirectory,
               char *line, char *pathPtr, char *executablePath);
+char **copy_enviroment(char **env);
+void free_matrix(char **matrix);
 
 /* String operation functions  */
 int _strcmp(char *s1, char *s2);
