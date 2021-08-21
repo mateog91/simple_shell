@@ -27,20 +27,22 @@
 typedef struct functions
 {
 	char *function_name;
-	int (*f)(char *);
+	int (*f)(char *, char *, char **);
 
 } built_in;
 
-int (*check_built_in(char *str_to_check))(char *);
+extern char **environ;
+
+int (*check_built_in(char *str_to_check))(char *, char *, char **);
 
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
 int executable_function(char *command, char **tokens);
 
 /* Built in functions*/
-int ls_function(char *str);
-int function_env(char *env);
-int function_exit(char *command);
+int ls_function(char *str, char *line, char **tokens);
+int function_env(char *env, char *line, char **tokens);
+int function_exit(char *command, char *line, char **tokens);
 
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
