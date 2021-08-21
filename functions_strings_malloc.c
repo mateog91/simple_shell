@@ -1,44 +1,6 @@
 #include "shell.h"
 
 /**
- * *_strcmp - compare two strings
- *@s1: pointer 1
- *@s2: pointer 2
- *Return: An integer != 0 if not equal
- */
-
-int _strcmp(char *s1, char *s2)
-{
-	int i = 0;
-
-	while (*(s1 + i) && *(s2 + i))
-	{
-		if (s1[i] != s2[i])
-			break;
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
-
-/**
- * _strlen - calculate the lenght of a input string
- * @str: pointer string to compute lenght
- * Return: lenght of the string
- */
-
-int _strlen(char *str)
-{
-	int i = 0;
-
-	while (str[i])
-		i++;
-
-	return (i);
-}
-
-#include <stdio.h>
-#include <stdlib.h>
-/**
  * str_concat - function that concatenates two strings.
  * @s1: Input string 1.
  * @s2: Input string 2.
@@ -94,8 +56,6 @@ char *str_concat(char *s1, char *s2)
 
 	return (ptr);
 }
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * _strdup - function that returns a pointer to a newly allocated space in

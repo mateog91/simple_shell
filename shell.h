@@ -45,18 +45,21 @@ int function_exit(char *command);
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_all(char **tokens, char **tokenDirectory,
-              char *line, char *pathPtr, char *executablePath);
+char *line, char *pathPtr, char *executablePath);
 char **copy_enviroment(char **env);
 void free_matrix(char **matrix);
 
-/* String operation functions  */
+/* String basic functions  */
+int _putchar(char c)
+void _puts(char *str)
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
+
+/* String Malloc functions */
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
 
 /* Functions that were in main */
-void deln(char *line);
 void printMatrix(char **matrix);
 void assignTokens(char *lineReaded, char **tokens, const char *delim);
 char **create_tokens(char *buffer, const char *delim);
