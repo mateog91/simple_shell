@@ -65,7 +65,7 @@ int _strlen(char *str);
 
 /* Errors print functions*/
 
-void print_error_not_found(char *argv0, char *tokens0, int countExec, return_error);
+void print_error_not_found(char *argv0, char *tokens0, int countExec, int return_error);
 
 /* String Malloc functions */
 char *str_concat(char *s1, char *s2);
