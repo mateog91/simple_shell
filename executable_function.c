@@ -26,7 +26,10 @@ int executable_function(char *command, char **tokens)
 	{
 		if (execve(command, tokens, NULL) == -1)
 		{
+			/*
 			perror("Error: execve failed");
+			printf("despues de perror");
+			*/
 			return (-1);
 		}
 	}
