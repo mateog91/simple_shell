@@ -103,19 +103,33 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			free(executablePath);
 			executablePath = NULL;
 			if (flag2)
+			{
+				flag2 = 0;
 				exit(1);
+			}
 		}
 		else if (stat(tokens[0], &buf) == 0)/* is command executable at local file?*/
 		{
 			printf("I am running executable function \n");
 
-
+                        if (executable_function(executablePath, tokens) == -1)
+                        {
+                                print_error_not_found(argv[0], tokens[0], countExec,\
+ -1);
+                                flag2 ++;
+                        }
+/*
 			executable_function(tokens[0], tokens);
-
+*/
 			free(line);
 			free(tokens);
 			line = NULL;
 			tokens = NULL;
+                        if (flag2)
+                        {
+                                flag2 = 0;
+                                exit(1);
+                        }
 			continue;
 		}
 		else
