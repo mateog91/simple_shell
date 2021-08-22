@@ -16,7 +16,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	const char *delim = " \n";
 	int sign, flag = 0, (*f)(char *), temp, countExec = 0;
 	struct stat buf;
-	
+
 	UNUSED(argv);
 	while (1)
 	{
@@ -29,6 +29,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		sign = getline(&line, &len_line, stdin);
 		if (sign < 0) /* Is EOF ?*/
 		{
+			if(sign == EOF)
+				_putchar('\n');
 			free(line);
 			free(tokens);
 			if (flag == 1)
