@@ -36,9 +36,9 @@ This simple_shell is designed to run commands like sh, but it doesn't have the s
 - ✅ handle commands with arguments
 - ✅ Implement the  `exit`  built-in, that exits the shell
 - ✅ Implement the  `env`  **built-in**, that prints the current environment
+- ✅ Handle `Ctrl+C` signal
 - 🔲 Implement new_getline function
 - 🔲 Implement new_strtok function
-- 🔲 Handle `Ctrl+C` signal
 - 🔲 Implement the `setenv` and `unsetenv` builtin commands
 - 🔲 Implement the builtin command `cd`
 - 🔲 Handle the commands separator  `;`
@@ -97,4 +97,5 @@ vagrant@ubuntu-focal:~/holberton/simple_shell$
 ## Authors
 
 Mateo Garcia  |  [GitHub](https://github.com/mateog91)
+
 Sebastian Gonzalez |  [GitHub](https://github.com/JuanSebastianGB)
