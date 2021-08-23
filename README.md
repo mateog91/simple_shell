@@ -37,8 +37,9 @@ This simple_shell is designed to run commands like sh, but it doesn't have the s
 - ✅ Implement the  `exit`  built-in, that exits the shell
 - ✅ Implement the  `env`  **built-in**, that prints the current environment
 - ✅ Handle `Ctrl+C` signal
+- ✅ Implement new_strtok function
+- ✅ Handle comments (`#`)
 - 🔲 Implement new_getline function
-- 🔲 Implement new_strtok function
 - 🔲 Implement the `setenv` and `unsetenv` builtin commands
 - 🔲 Implement the builtin command `cd`
 - 🔲 Handle the commands separator  `;`
@@ -47,7 +48,6 @@ This simple_shell is designed to run commands like sh, but it doesn't have the s
 - 🔲 Handle variables replacement
 - 🔲 Handle the  `$?`  variable
 - 🔲 Handle the  `$$`  variable
-- 🔲 Handle comments (`#`)
 - 🔲 Implement the  `help`  built-in.
 - 🔲 Implement the history built-in, without any argument
 
