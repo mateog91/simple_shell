@@ -1,6 +1,19 @@
 #include "shell.h"
 
 /**
+ * avoid_signal_stop - stop ^C signal
+ * @sig: input required
+ *
+ * Return: Nothing
+ */
+static void avoid_signal_stop(int sig)
+{
+	char *prompt = "\n$ ";
+	UNUSED(sig);
+	write(STDIN_FILENO, prompt, _strlen(prompt));
+}
+
+/**
  * main - function that runs a simple shell
  * @argc: Number of arguments gived by user in main shell
  * @argv: params gived by user in main shell
@@ -17,19 +30,19 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int sign, flag = 0, (*f)(char *), temp, countExec = 0, flag2 = 0;
 	struct stat buf;
 
-	UNUSED(argv);
+	signal(SIGINT, avoid_signal_stop);
+
 	while (1)
 	{
 		countExec++;
 /*Prompt*/
-		if (isatty(fileno(stdin))){
+		if (isatty(fileno(stdin)))
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
-		}
-/* Get line */
+		/* Get line */
 		sign = getline(&line, &len_line, stdin);
 		if (sign < 0) /* Is EOF ?*/
 		{
-			if(sign == EOF)
+			if (sign == EOF)
 				_putchar('\n');
 			free(line);
 			free(tokens);
@@ -56,8 +69,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
 		{
-
-			if ((temp = f(tokens[0])) == 50)/*Exec & stores retVal*/
+			temp = f(tokens[0]);
+			if (temp == 50)/*Exec & stores retVal*/
 			{
 				free_exit(tokens, tokenDirectory, line,
 					  pathPtr, executablePath, flag);
@@ -90,11 +103,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (executablePath != NULL)
 		{
 /*Here goes executable function*/
-			/*printf("running executable through PATH concatenation\n");*/
+/*printf("running executable through PATH concatenation\n");*/
 			if (executable_function(executablePath, tokens) == -1)
 			{
 				print_error_not_found(argv[0], tokens[0], countExec, -1);
-				flag2 ++;
+				flag2++;
 			}
 			free(line);
 			free(tokens);
@@ -112,30 +125,30 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		{
 			printf("I am running executable function \n");
 
-                        if (executable_function(executablePath, tokens) == -1)
-                        {
-                                print_error_not_found(argv[0], tokens[0], countExec,\
- -1);
-                                flag2 ++;
-                        }
+			if (executable_function(executablePath, tokens) == -1)
+			{
+				print_error_not_found(argv[0], tokens[0], countExec,\
+						      -1);
+				flag2++;
+			}
 /*
-			executable_function(tokens[0], tokens);
+  executable_function(tokens[0], tokens);
 */
 			free(line);
 			free(tokens);
 			line = NULL;
 			tokens = NULL;
-                        if (flag2)
-                        {
-                                flag2 = 0;
-                                exit(1);
-                        }
+			if (flag2)
+			{
+				flag2 = 0;
+				exit(1);
+			}
 			continue;
 		}
 		else
 		{
 
-			/*_puts2(argv[0]); print_number(countExec);*/
+/*_puts2(argv[0]); print_number(countExec);*/
 			print_error_not_found(argv[0], tokens[0], countExec, 0);
 			free(line);
 			free(tokens);
