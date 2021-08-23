@@ -64,6 +64,8 @@ void print_number(int n);
 /* String basic functions  */
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
+int _in(char c, const char *str);
+char *_strtok(char *str, const char *delim);
 
 /* Errors print functions*/
 
@@ -77,5 +79,6 @@ char *_strdup(char *str);
 void printMatrix(char **matrix);
 void assignTokens(char *lineReaded, char **tokens, const char *delim);
 char **create_tokens(char *buffer, const char *delim);
+
 
 #endif /* _SHELL_H_ */

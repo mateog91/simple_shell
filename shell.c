@@ -31,7 +31,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	struct stat buf;
 
 	signal(SIGINT, avoid_signal_stop);
-
 	while (1)
 	{
 		countExec++;
