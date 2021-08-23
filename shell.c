@@ -13,7 +13,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *line = NULL, *pathPtr = NULL, *prompt = "$ ", *executablePath;
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
-	const char *delim = " \n";
+	const char *delim = " \n\t\r";
 	int sign, flag = 0, (*f)(char *), temp, countExec = 0, flag2 = 0;
 	struct stat buf;
 
