@@ -37,7 +37,6 @@ void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
 
 int main_parse(char **tokens, char *line, const char *delim)
 {
-        tokens = create_tokens(line, delim);
         assignTokens(line, tokens, delim);
         if (tokens[0] == NULL)
         {

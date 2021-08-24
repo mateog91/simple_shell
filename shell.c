@@ -28,13 +28,19 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (isatty(fileno(stdin)))
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 
-		/* Get line */
+/* Get line */
 		sign = getline(&line, &len_line, stdin);
 		main_get_line(tokenDirectory, tokens, pathPtr, executablePath, line, sign, flag);
 
 /* Parse line into tokens*/
 		tokens = create_tokens(line, delim);
+		/*
 		assignTokens(line, tokens, delim);
+		*/
+		if (main_parse(tokens, line, delim) == 1)
+			continue;
+
+		/*
 		if (tokens[0] == NULL)
 		{
 			free(line);
@@ -43,6 +49,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			tokens = NULL;
 			continue;
 		}
+		*/
 /* check if is built in*/
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
