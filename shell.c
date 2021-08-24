@@ -18,28 +18,20 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	struct stat buf;
 
 	UNUSED(argv);
+	UNUSED(len_line);
+	UNUSED(sign);
+
 	while (1)
 	{
 		countExec++;
 /*Prompt*/
 		if (isatty(fileno(stdin)))
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
-/* Get line */
+
+		/* Get line */
 		sign = getline(&line, &len_line, stdin);
-		if (sign < 0) /* Is EOF ?*/
-		{
-			if(sign == EOF)
-				_putchar('\n');
-			free(line);
-			free(tokens);
-			if (flag == 1)
-			{
-				free(pathPtr);
-				free(tokenDirectory);
-				free(executablePath);
-			}
-			exit(1);
-		}
+		main_get_line(tokenDirectory, tokens, pathPtr, executablePath, line, sign, flag);
+
 /* Parse line into tokens*/
 		tokens = create_tokens(line, delim);
 		assignTokens(line, tokens, delim);
@@ -94,7 +86,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			errno = 0;
 			executable_function(executablePath, tokens);
 			if (errno != 0)
+			{
 				print_error_not_found(argv[0], tokens[0], countExec, -1);
+			}
 
 			free(line);
 			free(tokens);

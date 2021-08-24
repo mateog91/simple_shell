@@ -35,6 +35,10 @@ typedef struct functions
 
 } built_in;
 
+/* main functions */
+void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
+                   char *executablePath, char *line, int sign, int flag);
+/* function others */
 int (*check_built_in(char *str_to_check))(char *);
 
 char *getPath(char **env);
