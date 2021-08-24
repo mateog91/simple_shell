@@ -26,7 +26,7 @@ int executable_function(char *command, char **tokens)
 	{
 		if (execve(command, tokens, NULL) == -1)
 		{
-			perror("Error: execve failed");
+			/*perror("Error: execve failed");*/
 			return (-1);
 		}
 	}
