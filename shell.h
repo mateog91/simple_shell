@@ -2,6 +2,7 @@
 #define _SHELL_H_
 
 extern char **environ;
+/*extern int errno;*/
 /* Compiling an executing program by:*/
 /* alias shell="gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh" */
 /*  valgrind --tool=memcheck --vgdb=yes --vgdb-error=0 ./prog */
@@ -17,6 +18,7 @@ extern char **environ;
 #include <sys/wait.h>
 #include <limits.h>
 #include <signal.h>
+#include <errno.h>
 
 #define UNUSED(x) (void)(x)
 

@@ -13,7 +13,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *line = NULL, *pathPtr = NULL, *prompt = "$ ", *executablePath;
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
-	const char *delim = " \n";
+	const char *delim = " \n\t\r";
 	int sign, flag = 0, (*f)(char *), temp, countExec = 0;
 	struct stat buf;
 
@@ -22,9 +22,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	{
 		countExec++;
 /*Prompt*/
-		if (isatty(fileno(stdin))){
+		if (isatty(fileno(stdin)))
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
-		}
 /* Get line */
 		sign = getline(&line, &len_line, stdin);
 		if (sign < 0) /* Is EOF ?*/
@@ -87,13 +86,16 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 /* Find not buil-in in PATH */
 /* Concatenate token line with PATH token*/
 		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
+
 		if (executablePath != NULL)
 		{
 /*Here goes executable function*/
-			/*printf("running executable through PATH concatenation\n");*/
-			printf("Case executing a not built in (..)\n");
-			if (executable_function(executablePath, tokens) == -1)
+			printf("running executable through PATH concatenation\n");
+			errno = 0;
+			executable_function(executablePath, tokens);
+			if (errno != 0)
 				print_error_not_found(argv[0], tokens[0], countExec, -1);
+
 			free(line);
 			free(tokens);
 			line = NULL;
@@ -103,8 +105,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 		else if (stat(tokens[0], &buf) == 0)/* is command executable at local file?*/
 		{
-			printf("I am running executable function at local dir \n");
+			printf("(stat is telling us a 'true')I am running executable function at local dir \n");
 			executable_function(tokens[0], tokens);
+			errno = 0;
+			if (errno != 0)
+				print_error_not_found(argv[0], tokens[0], countExec, -1);
 			free(line);
 			free(tokens);
 			line = NULL;
@@ -113,9 +118,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 		else
 		{
-			/*_puts2(argv[0]); print_number(countExec);*/
 			printf("Case: not found\n");
-			print_error_not_found(argv[0], tokens[0], countExec, 0);
+			errno = 0;
+			print_error_not_found(argv[0], tokens[0], countExec,0);
 			free(line);
 			free(tokens);
 			line = NULL;
