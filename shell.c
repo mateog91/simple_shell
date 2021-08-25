@@ -13,14 +13,13 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *line = NULL, *pathPtr = NULL, *prompt = "$ ", *executablePath;
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
-	const char *delim = " \n\t\r";
+	const char *delim = " \n\t\r.";
 	int sign, flag = 0, (*f)(char *), temp, countExec = 0;
 	struct stat buf;
 
 	UNUSED(argv);
 	UNUSED(len_line);
 	UNUSED(sign);
-
 	while (1)
 	{
 		countExec++;
@@ -30,35 +29,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 
 /* Get line */
 		sign = getline(&line, &len_line, stdin);
-		printf("sing is: %i\n", sign);
 		main_get_line(tokenDirectory, tokens, pathPtr, executablePath, line, sign, flag);
-		printf("ejecuto main_get_line\n");
 /* Parse line into tokens*/
-		tokens = create_tokens(line, delim);
-		printf("ejecuto createtokens\n");
-		/*
-		assignTokens(line, tokens, delim);
-		*/
+
 		if (main_parse(&tokens, &line, delim) == 1)
-		{
-			printf("return is 1\n");
-			if (line == NULL)
-				printf("line is NULL\n");
-			if (tokens == NULL)
-				printf("tokens is NULL\n");
 			continue;
-		}
-		printf("main_parse return 0\n");
-		/*
-		if (tokens[0] == NULL)
-		{
-			free(line);
-			free(tokens);
-			line = NULL;
-			tokens = NULL;
-			continue;
-		}
-		*/
 /* check if is built in*/
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
