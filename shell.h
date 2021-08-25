@@ -37,6 +37,8 @@ int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 			char **pathPtr, char **executablePath, int flag);
 int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
 		int *flag);
+int main_execute(char **executablePath, char ***tokenDirectory,
+		char ***tokens, char *argv, int countExec, char **line);
 
 /* function others */
 int (*check_built_in(char *str_to_check))(char *);

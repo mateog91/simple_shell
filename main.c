@@ -15,7 +15,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	size_t len_line;
 	const char *delim = " \n\t\r";
 	int sign, flag = 0, countExec = 0;
-	struct stat buf;
 
 	while (1)
 	{
@@ -31,30 +30,22 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (main_parse(&tokens, &line, delim) == 1)
 			continue;
 /* check if is built in*/
-		if ( main_check_built_in(&tokens, &tokenDirectory, &line,
+		if (main_check_built_in(&tokens, &tokenDirectory, &line,
 					&pathPtr, &executablePath, flag) == 1)
 			continue;
 /* Check if command is executable */
-
 		main_get_path(&pathPtr, env, &tokenDirectory, &flag);
-/*
-		if (flag != 1);
-		{
-			pathPtr = _strdup(getPath(env));
-			tokenDirectory = create_tokens(pathPtr, ":");
-			assignTokens(pathPtr, tokenDirectory, ":");
-			flag = 1;
-		}
-*/
-
 /* Find not buil-in in PATH */
 /* Concatenate token line with PATH token*/
-		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
+
+		if (main_execute(&executablePath, &tokenDirectory, &tokens,
+				argv[0], countExec, &line) == 1)
+			continue;
+
+/*		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
 
 		if (executablePath != NULL)
 		{
-/*Here goes executable function*/
-			/*printf("running executable through PATH concatenation\n");*/
 			errno = 0;
 			executable_function(executablePath, tokens);
 			if (errno != 0)
@@ -69,9 +60,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			free(executablePath);
 			executablePath = NULL;
 		}
-		else if (stat(tokens[0], &buf) == 0)/* is command executable at local file?*/
+		else if (stat(tokens[0], &buf) == 0)
 		{
-			/*printf("(stat is telling us a 'true')I am running executable function at local dir \n");*/
 			errno = 0;
 			executable_function(tokens[0], tokens);
 			if (errno != 0)
@@ -84,7 +74,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 		else
 		{
-			/*printf("Case: not found\n");*/
 			errno = 0;
 			print_error_not_found(argv[0], tokens[0], countExec);
 			free(line);
@@ -94,6 +83,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			free(executablePath);
 			executablePath = NULL;
 		}
+		*/
 	}
 	return (0);
 }
