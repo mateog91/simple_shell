@@ -35,6 +35,8 @@ void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
 int main_parse(char ***Dtokens, char **Dline, const char *delim);
 int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 			char **pathPtr, char **executablePath, int flag);
+int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
+		int *flag);
 
 /* function others */
 int (*check_built_in(char *str_to_check))(char *);

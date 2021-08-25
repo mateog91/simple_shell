@@ -21,13 +21,9 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	{
 		countExec++;
 /*Prompt*/
-		/*printf("errno before isatty value is: %i\n", errno); */
 		if (isatty(fileno(stdin)) != 0)
-		{
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
-		}
 /* Get line */
-		/*printf("errno after isatty value is: %i\n", errno); */
 		sign = getline(&line, &len_line, stdin);
 		main_get_line(tokenDirectory, tokens, pathPtr, executablePath, line, sign, flag);
 /* Parse line into tokens*/
@@ -39,17 +35,18 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 					&pathPtr, &executablePath, flag) == 1)
 			continue;
 /* Check if command is executable */
-/*access(tokens[0], X_OK) == 1)*/
-/* Optimization by running this only onces */
-		if (flag != 1)
+
+		main_get_path(&pathPtr, env, &tokenDirectory, &flag);
+/*
+		if (flag != 1);
 		{
-/* get PATH*/
 			pathPtr = _strdup(getPath(env));
-/* Parse PATH */
 			tokenDirectory = create_tokens(pathPtr, ":");
 			assignTokens(pathPtr, tokenDirectory, ":");
 			flag = 1;
 		}
+*/
+
 /* Find not buil-in in PATH */
 /* Concatenate token line with PATH token*/
 		executablePath = find_command_in_path(tokenDirectory, tokens[0]);

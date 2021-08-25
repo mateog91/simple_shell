@@ -73,3 +73,18 @@ int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 	else
 		return (0);
 }
+
+int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
+		int *flag)
+{
+		if (*flag != 1) /* Optimization by running this only onces */
+		{
+/* get PATH*/
+			*pathPtr = _strdup(getPath(env));
+/* Parse PATH */
+			*tokenDirectory = create_tokens(*pathPtr, ":");
+			assignTokens(*pathPtr, *tokenDirectory, ":");
+			*flag = 1;
+		}
+		return (0);
+}
