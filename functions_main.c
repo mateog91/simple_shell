@@ -160,8 +160,7 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 				*tokens[0]);
 
 		if (*executablePath != NULL)
-		{
-			errno = 0;
+		{	errno = 0;
 			executable_function(*executablePath, *tokens);
 			if (errno != 0)
 				print_error_not_found(argv, *tokens[0], countExec);
@@ -170,7 +169,8 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 			*line = NULL;
 			*tokens = NULL;
 			free(*executablePath);
-			*executablePath = NULL; }
+			*executablePath = NULL;
+			return (0); }
 		else if (stat(*tokens[0], &buf) == 0)
 		{
 			errno = 0;
@@ -182,8 +182,6 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 			*line = NULL;
 			*tokens = NULL;
 			return (1); }
-		else
-		{
 		errno = 0;
 		print_error_not_found(argv, *tokens[0], countExec);
 		free(*line);
@@ -192,5 +190,4 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 		*tokens = NULL;
 		free(*executablePath);
 		*executablePath = NULL;
-		}
 		return (0); }
