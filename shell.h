@@ -38,7 +38,7 @@ typedef struct functions
 /* main functions */
 void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
                    char *executablePath, char *line, int sign, int flag);
-int main_parse(char **tokens, char *line, const char *delim);
+int main_parse(char ***Dtokens, char **Dline, const char *delim);
 
 /* function others */
 int (*check_built_in(char *str_to_check))(char *);

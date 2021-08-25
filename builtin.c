@@ -36,8 +36,9 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
  */
 int ls_function(char *str)
 {
-	printf("%s\n", str);
+	UNUSED(str);
 
+	/*"%s\n", str);*/
 	return (1);
 }
 /**

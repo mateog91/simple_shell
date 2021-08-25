@@ -30,16 +30,25 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 
 /* Get line */
 		sign = getline(&line, &len_line, stdin);
+		printf("sing is: %i\n", sign);
 		main_get_line(tokenDirectory, tokens, pathPtr, executablePath, line, sign, flag);
-
+		printf("ejecuto main_get_line\n");
 /* Parse line into tokens*/
 		tokens = create_tokens(line, delim);
+		printf("ejecuto createtokens\n");
 		/*
 		assignTokens(line, tokens, delim);
 		*/
-		if (main_parse(tokens, line, delim) == 1)
+		if (main_parse(&tokens, &line, delim) == 1)
+		{
+			printf("return is 1\n");
+			if (line == NULL)
+				printf("line is NULL\n");
+			if (tokens == NULL)
+				printf("tokens is NULL\n");
 			continue;
-
+		}
+		printf("main_parse return 0\n");
 		/*
 		if (tokens[0] == NULL)
 		{

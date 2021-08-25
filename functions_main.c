@@ -22,7 +22,7 @@ void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
 	if (sign < 0) /* Is EOF ?*/
 	{
 		if(sign == EOF)
-			_putchar('\n');
+			_putchar('\0');
 		free(line);
 		free(tokens);
 		if (flag == 1)
@@ -35,15 +35,16 @@ void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
 	}
 }
 
-int main_parse(char **tokens, char *line, const char *delim)
+int main_parse(char ***Dtokens, char **Dline, const char *delim)
 {
-        assignTokens(line, tokens, delim);
-        if (tokens[0] == NULL)
+        assignTokens(*Dline, *Dtokens, delim);
+        if (*Dtokens[0] == NULL)
         {
-                free(line);
-                free(tokens);
-                line = NULL;
-                tokens = NULL;
+		printf("tokens[0] is NULL\n");
+                free(*Dline);
+                free(*Dtokens);
+                *Dline = NULL;
+                *Dtokens = NULL;
                 return (1);
         }
 	return (0);
