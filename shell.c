@@ -13,7 +13,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *line = NULL, *pathPtr = NULL, *prompt = "$ ", *executablePath;
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
-	const char *delim = " \n\t\r.";
+	const char *delim = " \n\t\r";
 	int sign, flag = 0, (*f)(char *), temp, countExec = 0;
 	struct stat buf;
 
@@ -40,7 +40,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 				free_exit(tokens, tokenDirectory, line,
 					  pathPtr, executablePath, flag); }
 			else
-				printf("Retorno= %i\n", 1);
+			/*	printf("Retorno= %i\n", 1);*/
 			free(line);
 			free(tokens);
 			line = NULL;
@@ -66,7 +66,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (executablePath != NULL)
 		{
 /*Here goes executable function*/
-			printf("running executable through PATH concatenation\n");
+			/*printf("running executable through PATH concatenation\n");*/
 			errno = 0;
 			executable_function(executablePath, tokens);
 			if (errno != 0)
