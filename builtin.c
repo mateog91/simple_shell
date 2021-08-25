@@ -49,9 +49,10 @@ int ls_function(char *str)
  */
 int function_env(char *env)
 {
-	UNUSED(env);
-
-	printMatrix(environ);
+	/*UNUSED(env);*/
+/*
+  printMatrix(env);*/
+	(void)env;
 	return (1);
 }
 int function_exit(char *command)

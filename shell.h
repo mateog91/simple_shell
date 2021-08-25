@@ -1,7 +1,7 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
-extern char **environ;
+
 /*extern int errno;*/
 /* Compiling an executing program by:*/
 /* alias shell="gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh" */
