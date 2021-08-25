@@ -15,6 +15,7 @@ void print_error_not_found(char *argv0, char *tokens0, int countExec, int return
 
 	if (errno != 0)
 	{
+		_puts2(": ");
 		perror("");
 		errno = 0;
 		exit(1);

@@ -66,7 +66,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (executablePath != NULL)
 		{
 /*Here goes executable function*/
-			/*printf("running executable through PATH concatenation\n");*/
+			printf("running executable through PATH concatenation\n");
 			errno = 0;
 			executable_function(executablePath, tokens);
 			if (errno != 0)
