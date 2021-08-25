@@ -21,10 +21,13 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	{
 		countExec++;
 /*Prompt*/
-		if (isatty(fileno(stdin)))
+		/*printf("errno before isatty value is: %i\n", errno); */
+		if (isatty(fileno(stdin)) != 0)
+		{
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
-
+		}
 /* Get line */
+		/*printf("errno after isatty value is: %i\n", errno); */
 		sign = getline(&line, &len_line, stdin);
 		main_get_line(tokenDirectory, tokens, pathPtr, executablePath, line, sign, flag);
 /* Parse line into tokens*/
@@ -84,8 +87,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		else if (stat(tokens[0], &buf) == 0)/* is command executable at local file?*/
 		{
 			printf("(stat is telling us a 'true')I am running executable function at local dir \n");
-			executable_function(tokens[0], tokens);
 			errno = 0;
+			executable_function(tokens[0], tokens);
 			if (errno != 0)
 				print_error_not_found(argv[0], tokens[0], countExec, -1);
 			free(line);
