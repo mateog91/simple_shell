@@ -17,7 +17,7 @@ void print_error_not_found(char *argv0, char *tokens0, int countExec)
 	_puts2(tokens0);
 	if (errno != 0)
 	{
-		printf("errno value is: %i\n", errno);
+		/*printf("errno value is: %i\n", errno);*/
 		_puts2(": ");
 		perror("");
 		errno = 0;
