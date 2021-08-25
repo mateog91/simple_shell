@@ -51,3 +51,16 @@ int main_parse(char ***Dtokens, char **Dline, const char *delim)
         }
 	return (0);
 }
+
+/**
+ *
+ */
+
+int main_check_bulit_in(char ***Ttokens, char ***TtokenDirectory, char **Dline,
+		char **DpathPtr, char **executablePath, int flag)
+{
+}
+
+
+
+
