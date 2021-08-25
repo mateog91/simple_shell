@@ -8,7 +8,7 @@
  * @line: pointer to line from command line
  * @sign: return value from getline
  * @flag: value of flag
- * 
+ *
  * Description:
  * Handles what to be done after getline is executed
  * If sign is < 0 means a signal of end of file is found
@@ -39,26 +39,14 @@ int main_parse(char ***Dtokens, char **Dline, const char *delim)
 {
 
 	*Dtokens = create_tokens(*Dline, delim);
-        assignTokens(*Dline, *Dtokens, delim);
-        if (*Dtokens[0] == NULL)
-        {
-		/*printf("tokens[0] is NULL\n");*/
-                free(*Dline);
-                free(*Dtokens);
-                *Dline = NULL;
-                *Dtokens = NULL;
-                return (1);
-        }
+	assignTokens(*Dline, *Dtokens, delim);
+	if (*Dtokens[0] == NULL)
+	{
+		free(*Dline);
+		free(*Dtokens);
+		*Dline = NULL;
+		*Dtokens = NULL;
+		return (1);
+	}
 	return (0);
 }
-
-/**
- *
- */
-
-/*
-int main_check_bulit_in(char ***Ttokens, char ***TtokenDirectory, char **Dline,
-		char **DpathPtr, char **executablePath, int flag)
-{
-}
-*/
