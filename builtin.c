@@ -49,19 +49,12 @@ int ls_function(char *str)
  */
 int function_env(char *env)
 {
-	/*UNUSED(env);*/
-/*
-  printMatrix(env);*/
-	(void)env;
+	UNUSED(env);
+	printMatrix(environ);
 	return (1);
 }
 int function_exit(char *command)
 {
 	UNUSED(command);
-	/*
-	printf("Estoy en exit");
-	exit(1);
-	printf("Me ves ?????");
-	*/
 	return (50);
 }
