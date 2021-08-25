@@ -69,7 +69,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (executablePath != NULL)
 		{
 /*Here goes executable function*/
-			printf("running executable through PATH concatenation\n");
+			/*printf("running executable through PATH concatenation\n");*/
 			errno = 0;
 			executable_function(executablePath, tokens);
 			if (errno != 0)
@@ -86,7 +86,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 		else if (stat(tokens[0], &buf) == 0)/* is command executable at local file?*/
 		{
-			printf("(stat is telling us a 'true')I am running executable function at local dir \n");
+			/*printf("(stat is telling us a 'true')I am running executable function at local dir \n");*/
 			errno = 0;
 			executable_function(tokens[0], tokens);
 			if (errno != 0)
@@ -99,7 +99,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		}
 		else
 		{
-			printf("Case: not found\n");
+			/*printf("Case: not found\n");*/
 			errno = 0;
 			print_error_not_found(argv[0], tokens[0], countExec,0);
 			free(line);
