@@ -74,7 +74,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			executable_function(executablePath, tokens);
 			if (errno != 0)
 			{
-				print_error_not_found(argv[0], tokens[0], countExec, -1);
+				print_error_not_found(argv[0], tokens[0], countExec);
 			}
 
 			free(line);
@@ -90,7 +90,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			errno = 0;
 			executable_function(tokens[0], tokens);
 			if (errno != 0)
-				print_error_not_found(argv[0], tokens[0], countExec, -1);
+				print_error_not_found(argv[0], tokens[0], countExec);
 			free(line);
 			free(tokens);
 			line = NULL;
@@ -101,7 +101,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		{
 			/*printf("Case: not found\n");*/
 			errno = 0;
-			print_error_not_found(argv[0], tokens[0], countExec,0);
+			print_error_not_found(argv[0], tokens[0], countExec);
 			free(line);
 			free(tokens);
 			line = NULL;
