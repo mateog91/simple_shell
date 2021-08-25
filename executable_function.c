@@ -24,7 +24,7 @@ int executable_function(char *command, char **tokens)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(command, tokens, NULL) == -1)
+		if (execve(command, tokens, environ) == -1)
 		{
 			/*perror("Error: execve failed");*/
 			return (-1);
