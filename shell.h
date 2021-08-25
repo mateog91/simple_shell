@@ -1,13 +1,7 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
-
-/*extern int errno;*/
-/* Compiling an executing program by:*/
-/* alias shell="gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh" */
-/*  valgrind --tool=memcheck --vgdb=yes --vgdb-error=0 ./prog */
-/* alias valgr="valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./hsh" */
-/* alias log="git log --all --decorate --oneline --graph" */
+extern char **environ;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +31,7 @@ typedef struct functions
 
 /* main functions */
 void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
-                   char *executablePath, char *line, int sign, int flag);
+		   char *executablePath, char *line, int sign, int flag);
 int main_parse(char ***Dtokens, char **Dline, const char *delim);
 
 /* function others */
@@ -55,16 +49,16 @@ int function_exit(char *command);
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_all(char **tokens, char **tokenDirectory,
-char *line, char *pathPtr, char *executablePath);
+	      char *line, char *pathPtr, char *executablePath);
 char **copy_enviroment(char **env);
 void free_matrix(char **matrix);
 void free_exit(char **tokens, char **tokenDirectory, char *line,
-               char *pathPtr, char *executablePath, int flag);
+	       char *pathPtr, char *executablePath, int flag);
 
 /* Print Functions*/
 int _putchar(char c);
 void _puts(char *str);
-void _puts2(char *str);/*WITHOUT NEW LINE*/
+void _puts2(char *str);
 void print_number(int n);
 
 /* String basic functions  */
@@ -73,7 +67,8 @@ int _strlen(char *str);
 
 /* Errors print functions*/
 
-void print_error_not_found(char *argv0, char *tokens0, int countExec, int return_error);
+void print_error_not_found(char *argv0, char *tokens0, int countExec,
+			   int return_error);
 
 /* String Malloc functions */
 char *str_concat(char *s1, char *s2);
