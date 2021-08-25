@@ -50,9 +50,26 @@ int main_parse(char ***Dtokens, char **Dline, const char *delim)
 	}
 	return (0);
 }
-/*
-int main_check_bulit_in(char ***Ttokens, char ***TtokenDirectory, char **Dline,
-		char **DpathPtr, char **executablePath, int flag)
+int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
+			char **pathPtr, char **executablePath, int flag)
 {
+	int (*f)(char *);
+
+	f = check_built_in(*tokens[0]);
+	if (f != NULL)
+	{
+		if (f(*tokens[0]) == 50)/*Exec & stores retVal*/
+		{
+			free_exit(*tokens, *tokenDirectory, *line,
+				  *pathPtr, *executablePath, flag);
+		}
+
+		free(*line);
+		free(*tokens);
+		*line = NULL;
+		*tokens = NULL;
+		return (1);
+	}
+	else
+		return (0);
 }
-*/

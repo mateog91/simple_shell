@@ -14,7 +14,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
 	const char *delim = " \n\t\r";
-	int sign, flag = 0, (*f)(char *), temp, countExec = 0;
+	int sign, flag = 0, countExec = 0;
 	struct stat buf;
 
 	while (1)
@@ -35,21 +35,25 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (main_parse(&tokens, &line, delim) == 1)
 			continue;
 /* check if is built in*/
+		/*
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
 		{
-			if ((temp = f(tokens[0])) == 50)/*Exec & stores retVal*/
-			{
+			if ((temp = f(tokens[0])) == 50)*//*Exec & stores retVal*/
+		/*	{
 				free_exit(tokens, tokenDirectory, line,
 					  pathPtr, executablePath, flag); }
 			else
-			/*	printf("Retorno= %i\n", 1);*/
-			free(line);
+			*//*	printf("Retorno= %i\n", 1);*/
+			/*free(line);
 			free(tokens);
 			line = NULL;
 			tokens = NULL;
 			continue; }
-
+*/
+		if ( main_check_built_in(&tokens, &tokenDirectory, &line,
+					&pathPtr, &executablePath, flag) == 1)
+			continue;
 /* Check if command is executable */
 /*access(tokens[0], X_OK) == 1)*/
 /* Optimization by running this only onces */
