@@ -9,7 +9,7 @@
  */
 int _putchar(char c)
 {
-        return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
 
@@ -20,11 +20,11 @@ int _putchar(char c)
  */
 void _puts(char *str)
 {
-        int i;
+	int i;
 
-        for (i = 0; str[i] != '\0'; i++)
-                _putchar(str[i]);
-        _putchar('\n');
+	for (i = 0; str[i] != '\0'; i++)
+		_putchar(str[i]);
+	_putchar('\n');
 }
 /**
  * _puts2 - prints a string WITHOUT newline
@@ -33,10 +33,10 @@ void _puts(char *str)
  */
 void _puts2(char *str)
 {
-        int i;
+	int i;
 
-        for (i = 0; str[i] != '\0'; i++)
-                _putchar(str[i]);
+	for (i = 0; str[i] != '\0'; i++)
+		_putchar(str[i]);
 }
 /**
  * print_number - Function that prints an integer number
@@ -47,7 +47,7 @@ void _puts2(char *str)
 
 void print_number(int n)
 {
-unsigned int bu = n;
+	unsigned int bu = n;
 
 	if (n < 0)
 	{
