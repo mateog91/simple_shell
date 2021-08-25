@@ -17,9 +17,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int sign, flag = 0, (*f)(char *), temp, countExec = 0;
 	struct stat buf;
 
-	UNUSED(argv);
-	UNUSED(len_line);
-	UNUSED(sign);
 	while (1)
 	{
 		countExec++;
@@ -38,21 +35,17 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		f = check_built_in(tokens[0]);
 		if (f != NULL)
 		{
-
 			if ((temp = f(tokens[0])) == 50)/*Exec & stores retVal*/
 			{
 				free_exit(tokens, tokenDirectory, line,
-					  pathPtr, executablePath, flag);
-			}
+					  pathPtr, executablePath, flag); }
 			else
 				printf("Retorno= %i\n", 1);
-
 			free(line);
 			free(tokens);
 			line = NULL;
 			tokens = NULL;
-			continue;
-		}
+			continue; }
 
 /* Check if command is executable */
 /*access(tokens[0], X_OK) == 1)*/
