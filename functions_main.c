@@ -31,7 +31,7 @@ void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
 			free(tokenDirectory);
 			free(executablePath);
 		}
-		exit(1);
+		exit(EXIT_SUCCESS);
 	}
 }
 /**
