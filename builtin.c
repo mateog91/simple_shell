@@ -53,6 +53,17 @@ int function_env(char *env)
 	printMatrix(environ);
 	return (1);
 }
+
+/**
+ * function_exit - function for built in exit
+ * @command: Input command from command line
+ *
+ * Description:
+ * It is a help function so that the main knows that it is exit and kills the
+ * the process
+ *
+ * Return: Always 50, a distinctive integer so main functions knows it is exit
+ */
 int function_exit(char *command)
 {
 	UNUSED(command);

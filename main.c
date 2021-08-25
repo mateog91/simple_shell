@@ -24,7 +24,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 /* Get line */
 		sign = getline(&line, &len_line, stdin);
-		main_get_line(tokenDirectory, tokens, pathPtr, executablePath, line, sign, flag);
+		main_get_line(tokenDirectory, tokens, pathPtr, executablePath,
+				line, sign, flag);
 /* Parse line into tokens*/
 
 		if (main_parse(&tokens, &line, delim) == 1)
@@ -35,55 +36,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 			continue;
 /* Check if command is executable */
 		main_get_path(&pathPtr, env, &tokenDirectory, &flag);
-/* Find not buil-in in PATH */
-/* Concatenate token line with PATH token*/
-
+/* Execution */
 		if (main_execute(&executablePath, &tokenDirectory, &tokens,
 				argv[0], countExec, &line) == 1)
 			continue;
-
-/*		executablePath = find_command_in_path(tokenDirectory, tokens[0]);
-
-		if (executablePath != NULL)
-		{
-			errno = 0;
-			executable_function(executablePath, tokens);
-			if (errno != 0)
-			{
-				print_error_not_found(argv[0], tokens[0], countExec);
-			}
-
-			free(line);
-			free(tokens);
-			line = NULL;
-			tokens = NULL;
-			free(executablePath);
-			executablePath = NULL;
-		}
-		else if (stat(tokens[0], &buf) == 0)
-		{
-			errno = 0;
-			executable_function(tokens[0], tokens);
-			if (errno != 0)
-				print_error_not_found(argv[0], tokens[0], countExec);
-			free(line);
-			free(tokens);
-			line = NULL;
-			tokens = NULL;
-			continue;
-		}
-		else
-		{
-			errno = 0;
-			print_error_not_found(argv[0], tokens[0], countExec);
-			free(line);
-			free(tokens);
-			line = NULL;
-			tokens = NULL;
-			free(executablePath);
-			executablePath = NULL;
-		}
-		*/
 	}
 	return (0);
 }

@@ -34,22 +34,53 @@ void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
 		exit(1);
 	}
 }
-
-int main_parse(char ***Dtokens, char **Dline, const char *delim)
+/**
+ * main_parse - tokenize input string into tokens and stores them in a matrix
+ * @tokens: Matrix where each individual token is stored in
+ * @line: Input line from user command line.
+ * @delim: String of characters to parse with.
+ *
+ * Description:
+ * Parses the given input string line into tokens and store them in the given
+ * matrix. Each Parse is done when the delimitator is found.
+ *
+ * Return:
+ * 0 if when the parse is done
+ * 1 when there was no parse done
+ */
+int main_parse(char ***tokens, char **line, const char *delim)
 {
 
-	*Dtokens = create_tokens(*Dline, delim);
-	assignTokens(*Dline, *Dtokens, delim);
-	if (*Dtokens[0] == NULL)
+	*tokens = create_tokens(*line, delim);
+	assignTokens(*line, *tokens, delim);
+	if (*tokens[0] == NULL)
 	{
-		free(*Dline);
-		free(*Dtokens);
-		*Dline = NULL;
-		*Dtokens = NULL;
+		free(*line);
+		free(*tokens);
+		*line = NULL;
+		*tokens = NULL;
 		return (1);
 	}
 	return (0);
 }
+
+/**
+ * main_check_built_in - checks if the command is a built in function
+ * @tokens: Matrix where each individual token is stored in
+ * @tokenDirectory: Matrix where Paths are stored in.
+ * @line: Input line from user command line.
+ * @pathPtr: Pointer to PATH.
+ * @executablePath: A current path that holds a possible executable command
+ * @flag: Flag that tells if first time running.
+ *
+ * Description:
+ * Checks if the command is in the built in functions, if it finds it runs it.
+ *
+ * Return:
+ * 1 if a built in function is found
+ * 50 if exit is found
+ * 0 if no built in function is found
+ */
 int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 			char **pathPtr, char **executablePath, int flag)
 {
@@ -73,6 +104,16 @@ int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 	else
 		return (0);
 }
+
+/**
+ * main_get_path - copies PATH enviorment variable and parses it
+ * @pathPtr: Pointer to PATH.
+ * @env: System enviormental variables
+ * @tokenDirectory: Matrix where Paths are stored in.
+ * @flag: Flag that tells if first time running.
+ *
+ * Return: 0 on success
+ */
 int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
 		int *flag)
 {
@@ -88,6 +129,27 @@ int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
 		return (0);
 }
 
+/**
+ * main_execute - Executes the command line if founds and frees the variables
+ * @executablePath: A current path that holds a possible executable command
+ * @tokenDirectory: Matrix where Paths are stored in.
+ * @tokens: Matrix where each individual token is stored in
+ * @argv: Shells executable name file.
+ * @countExec: Number of times the shell has run.
+ * @line: Input line from user command line.
+ *
+ * Descritpion:
+ * Finds if the command is an executable in the PATH env variable
+ * If it finds it it executes it.
+ * If not, checks if command is a executable file at locat directory
+ * If it is, it executes it
+ * If not found, prints error.
+ * On all cases it frees variables accordingly.
+ *
+ * Return:
+ * 1 if command is executable at local directory
+ * 0 on other cases.
+ */
 
 int main_execute(char **executablePath, char ***tokenDirectory,
 		char ***tokens, char *argv, int countExec, char **line)
@@ -99,25 +161,18 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 
 		if (*executablePath != NULL)
 		{
-/*Here goes executable function*/
-			/*printf("running executable through PATH concatenation\n");*/
 			errno = 0;
 			executable_function(*executablePath, *tokens);
 			if (errno != 0)
-			{
 				print_error_not_found(argv, *tokens[0], countExec);
-			}
-
 			free(*line);
 			free(*tokens);
 			*line = NULL;
 			*tokens = NULL;
 			free(*executablePath);
-			*executablePath = NULL;
-		}
-		else if (stat(*tokens[0], &buf) == 0)/* is command executable at local file?*/
+			*executablePath = NULL; }
+		else if (stat(*tokens[0], &buf) == 0)
 		{
-			/*printf("(stat is telling us a 'true')I am running executable function at local dir \n");*/
 			errno = 0;
 			executable_function(*tokens[0], *tokens);
 			if (errno != 0)
@@ -126,19 +181,16 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 			free(*tokens);
 			*line = NULL;
 			*tokens = NULL;
-			return (1);
-		}
+			return (1); }
 		else
 		{
-			/*printf("Case: not found\n");*/
-			errno = 0;
-			print_error_not_found(argv, *tokens[0], countExec);
-			free(*line);
-			free(*tokens);
-			*line = NULL;
-			*tokens = NULL;
-			free(*executablePath);
-			*executablePath = NULL;
+		errno = 0;
+		print_error_not_found(argv, *tokens[0], countExec);
+		free(*line);
+		free(*tokens);
+		*line = NULL;
+		*tokens = NULL;
+		free(*executablePath);
+		*executablePath = NULL;
 		}
-		return (0);
-}
+		return (0); }
