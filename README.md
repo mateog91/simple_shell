@@ -25,6 +25,9 @@ For this program to run, we suggest you use it in **Ubuntu 20.04.2 LTS (Focal Fo
 -  move to directory simple_shell.
 -   Compile.
 -   Run the shell either in interactive mode using  `./hsh` or in not interactive mode using as follow ``echo "ls -lhta" | ./hsh ``
+## Flowchart
+![alt text](https://lucid.app/publicSegments/view/9debc2df-0aa7-4f1e-8746-9888b176693e/image.jpeg)
+
 ## Features 🔧
 This simple_shell is designed to run commands like sh, but it doesn't have the same functionalities. below is a list of the implementations it has.
 - ✅ use the  `PATH`
