@@ -13,6 +13,7 @@ extern char **environ;
 #include <limits.h>
 #include <signal.h>
 #include <errno.h>
+#include <stddef.h>
 
 #define UNUSED(x) (void)(x)
 
@@ -40,12 +41,17 @@ int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
 int main_execute(char **executablePath, char ***tokenDirectory,
 		char ***tokens, char *argv, int countExec, char **line);
 
+
 /* function others */
 int (*check_built_in(char *str_to_check))(char *);
 
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
 int executable_function(char *command, char **tokens);
+
+/* advanced functions */
+int _in(char c, const char *str);
+char *_strtok(char *str, const char *delim);
 
 /* Built in functions*/
 int ls_function(char *str);
