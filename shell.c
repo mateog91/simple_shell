@@ -1,5 +1,20 @@
 #include "shell.h"
 
+
+/**
+ * avoid_signal_stop - stop ^C signal
+ * @sig: input required
+ *
+ * Return: Nothing
+ */
+static void avoid_signal_stop(int sig)
+{
+	char *prompt = "\n$ ";
+
+	UNUSED(sig);
+	write(STDIN_FILENO, prompt, _strlen(prompt));
+}
+
 /**
  * main - function that runs a simple shell
  * @argc: Number of arguments gived by user in main shell
@@ -15,6 +30,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	size_t len_line;
 	const char *delim = " \n\t\r";
 	int sign, flag = 0, countExec = 0;
+
+	signal(SIGINT, avoid_signal_stop);
 
 	while (1)
 	{
