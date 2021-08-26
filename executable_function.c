@@ -16,6 +16,8 @@ int executable_function(char *command, char **tokens, c_variables *variables)
 	pid_t child_pid;
 	int status;
 
+	(void)variables;
+
 	child_pid = fork();
 	if (child_pid == -1)
 	{
@@ -24,7 +26,7 @@ int executable_function(char *command, char **tokens, c_variables *variables)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(command, tokens, variables->env) == -1)
+		if (execve(command, tokens, environ) == -1)
 		{
 			/*perror("Error: execve failed");*/
 			return (-1);
