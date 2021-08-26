@@ -58,7 +58,7 @@ This simple_shell is designed to run commands like sh, but it doesn't have the s
 - 🔲 `help`
 - 🔲 `history`
 ## Example of use
-```
+```bash
 vagrant@ubuntu-focal:~/holberton/simple_shell$ alias shell='gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh && ./hsh'
 vagrant@ubuntu-focal:~/holberton/simple_shell$ shell
 $ ls -lhta
@@ -88,6 +88,58 @@ drwxrwxr-x 12 vagrant vagrant 4.0K Aug 21 02:34 ..
 $ exit
 vagrant@ubuntu-focal:~/holberton/simple_shell$
 ```
+For a non interactive use, meaning, using the simple shell from the outside and pipeline to the standard input, it can be used this way:
+```bash
+echo ls -lhta | ./hsh
+total 196K
+drwxrwxr-x  3 vagrant vagrant 4.0K Aug 26 20:46 .
+-rwxrwxr-x  1 vagrant vagrant  23K Aug 26 20:46 hsh
+-rw-r--r--  1 vagrant vagrant  12K Aug 26 19:21 .function_others.c.swp
+-rw-r--r--  1 vagrant vagrant  16K Aug 26 19:11 .functions_main.c.swp
+-rw-r--r--  1 vagrant vagrant  12K Aug 26 19:11 .shell.c.swp
+drwxrwxr-x  8 vagrant vagrant 4.0K Aug 26 19:09 .git
+-rw-rw-r--  1 vagrant vagrant 4.1K Aug 26 19:09 README.md
+-rw-rw-r--  1 vagrant vagrant 1.6K Aug 26 19:09 shell.c
+-rw-rw-r--  1 vagrant vagrant 2.5K Aug 26 19:09 shell.h
+drwxr-xr-x 19 vagrant vagrant 4.0K Aug 26 19:09 ..
+-rw-rw-r--  1 vagrant vagrant 1.7K Aug 26 05:32 functions_memory.c
+-rw-rw-r--  1 vagrant vagrant 1.4K Aug 26 04:49 function_others.c
+-rw-rw-r--  1 vagrant vagrant 1014 Aug 26 04:49 function_strtok.c
+-rw-rw-r--  1 vagrant vagrant 5.1K Aug 26 04:12 functions_main.c
+-rw-rw-r--  1 vagrant vagrant  556 Aug 26 03:35 functions_print_errors.c
+-rw-rw-r--  1 vagrant vagrant 4.0K Aug 26 02:18 man_1_simple_shell.1
+-rw-rw-r--  1 vagrant vagrant 3.7K Aug 26 02:10 man_1_simple_shell.1.md
+-rwxr-xr-x  1 vagrant vagrant   25 Aug 26 01:47 example
+-rwxrwxr-x  1 vagrant vagrant  23K Aug 25 15:00 a.out
+-rw-rw-r--  1 vagrant vagrant  759 Aug 25 14:59 executable_function.c
+-rw-rw-r--  1 vagrant vagrant 1.4K Aug 25 14:57 builtin.c
+-rw-rw-r--  1 vagrant vagrant  937 Aug 25 06:19 functions_print.c
+-rwxr-xr-x  1 vagrant vagrant 1.9K Aug 25 04:49 pruebas.sh
+-rw-rw-r--  1 vagrant vagrant 1.2K Aug 25 02:59 find_command_path.c
+-rw-rw-r--  1 vagrant vagrant  498 Aug 25 02:59 functions_strings_basic.c
+-rw-rw-r--  1 vagrant vagrant 2.1K Aug 25 02:59 functions_strings_malloc.c
+-rw-rw-r--  1 vagrant vagrant  726 Aug 25 02:59 handling_env.c
+-rw-rw-r--  1 vagrant vagrant  696 Aug 25 02:59 handling_path.c
+-rw-rw-r--  1 vagrant vagrant   73 Aug 16 13:57 AUTHORS
+-rw-rw-r--  1 vagrant vagrant    3 Aug 15 23:04 .gitignore
+```
+An example when a function is not found would look like this:
+```bash
+vagrant@ubuntu-focal:~/simple_shell$ shell
+$ hello world
+./hsh: 1: hello: not found
+$ 
+```
+From the not interactive:
+```
+vagrant@ubuntu-focal:~/simple_shell$ echo "hello world" | ./hsh
+./hsh: 1: hello: not found
+```
+
+## Bugs:
+The exit values are not the same as the *sh* shell that this simple shell emulates. It is in current progress to fix.
+
+
 ## Authors
 Mateo Garcia  |  [GitHub](https://github.com/mateog91)
 
