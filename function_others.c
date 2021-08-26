@@ -28,12 +28,12 @@ void assignTokens(char *lineReaded, char **tokens, const char *delim)
 	char *token = NULL;
 	int count = 0;
 
-	token = _strtok(lineReaded, delim);
+	token = strtok(lineReaded, delim);
 	tokens[count] = token;
 	while (token != NULL)
 	{
 		count++;
-		token = _strtok(NULL, delim);
+		token = strtok(NULL, delim);
 		tokens[count] = token;
 	}
 	tokens[count] = NULL;
