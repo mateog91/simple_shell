@@ -93,6 +93,6 @@ void free_exit(char **tokens, char **tokenDirectory, char *line,
 		free(tokenDirectory);
 		free(executablePath);
 	}
-	exit(1);
+	exit(EXIT_SUCCESS);
 
 }
