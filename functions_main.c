@@ -153,8 +153,7 @@ int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
  */
 
 int main_execute(char **executablePath, char ***tokenDirectory,
-		char ***tokens, char *argv, int countExec, char **line,
-		 c_variables *variables)
+		char ***tokens, char *argv, int countExec, char **line)
 {
 		struct stat buf;
 
@@ -163,7 +162,7 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 
 		if (*executablePath != NULL)
 		{	errno = 0;
-			executable_function(*executablePath, *tokens, variables);
+			executable_function(*executablePath, *tokens);
 			if (errno != 0)
 				print_error_not_found(argv, *tokens[0], countExec);
 			free(*line);
@@ -176,7 +175,7 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 		else if (stat(*tokens[0], &buf) == 0)
 		{
 			errno = 0;
-			executable_function(*tokens[0], *tokens, variables);
+			executable_function(*tokens[0], *tokens);
 			if (errno != 0)
 				print_error_not_found(argv, *tokens[0], countExec);
 			free(*line);

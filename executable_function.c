@@ -11,12 +11,10 @@
  *
  * Return: 0 on success, -1 on failure.
  */
-int executable_function(char *command, char **tokens, c_variables *variables)
+int executable_function(char *command, char **tokens)
 {
 	pid_t child_pid;
 	int status;
-
-	(void)variables;
 
 	child_pid = fork();
 	if (child_pid == -1)

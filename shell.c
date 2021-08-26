@@ -30,11 +30,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env_original)
 	size_t len_line;
 	const char *delim = " \n\t\r";
 	int sign, flag = 0, countExec = 0;
-	c_variables variables = {NULL};
+	
 
 	signal(SIGINT, avoid_signal_stop);
-	env = copy_enviroment(env_original);
-	variables.env = env;
+	env = copy_enviroment(env_original);	
 	while (1)
 	{
 		countExec++;
@@ -57,7 +56,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env_original)
 		main_get_path(&pathPtr, env, &tokenDirectory, &flag);
 /* Execution */
 		if (main_execute(&executablePath, &tokenDirectory, &tokens,
-				argv[0], countExec, &line, &variables) == 1)
+				argv[0], countExec, &line) == 1)
 			continue;
 	}
 	return (0);
