@@ -37,6 +37,8 @@ void assignTokens(char *lineReaded, char **tokens, const char *delim)
 		tokens[count] = token;
 	}
 	tokens[count] = NULL;
+
+
 }
 /**
  * **create_tokens - use memory dinamicly to create an empty **char

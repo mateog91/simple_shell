@@ -33,7 +33,7 @@ char *_strtok(char *str, const char *delim)
 {
 
 	int i = 0;
-	char *bu, *token = NULL;
+	char *bu, *token;
 
 	if (str)
 		token = str;
