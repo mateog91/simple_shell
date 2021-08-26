@@ -19,16 +19,6 @@ extern char **environ;
 
 
 /**
- * struct variables_main - struct to handle variables
- * @env: Enviroment backup
- *
- */
-typedef struct variables_main
-{
-	char **env;
-} c_variables;
-
-/**
  * struct functions - struct to compute buitl in functions
  * @function_name: Name of the function
  * @f: Function to execute

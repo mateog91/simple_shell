@@ -23,17 +23,17 @@ static void avoid_signal_stop(int sig)
  * Return: Always 0;
  */
 
-int main(int argc __attribute__((unused)), char **argv, char **env_original)
+int main(int argc __attribute__((unused)), char **argv, char **env)
 {
 	char *line = NULL, *pathPtr = NULL, *prompt = "$ ", *executablePath;
-	char **tokens = NULL, **tokenDirectory = NULL, **env = NULL;
+	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
 	const char *delim = " \n\t\r";
 	int sign, flag = 0, countExec = 0;
-	
+
 
 	signal(SIGINT, avoid_signal_stop);
-	env = copy_enviroment(env_original);	
+
 	while (1)
 	{
 		countExec++;

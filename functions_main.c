@@ -125,7 +125,6 @@ int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
 			*tokenDirectory = create_tokens(*pathPtr, ":");
 			assignTokens(*pathPtr, *tokenDirectory, ":");
 			*flag = 1;
-			free_matrix(env);
 		}
 		return (0);
 }
