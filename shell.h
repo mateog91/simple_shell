@@ -51,14 +51,14 @@ int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
 		int *flag);
 int main_execute(char **executablePath, char ***tokenDirectory,
 		 char ***tokens, char *argv, int countExec, char **line,
-		 c_variables variables);
+		 c_variables *variables);
 
 /* function others */
 int (*check_built_in(char *str_to_check))(char *);
 
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
-int executable_function(char *command, char **tokens, c_variables variables);
+int executable_function(char *command, char **tokens, c_variables *variables);
 
 /* advanced functions */
 int _in(char c, const char *str);

@@ -57,7 +57,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env_original)
 		main_get_path(&pathPtr, env, &tokenDirectory, &flag);
 /* Execution */
 		if (main_execute(&executablePath, &tokenDirectory, &tokens,
-				argv[0], countExec, &line, variables) == 1)
+				argv[0], countExec, &line, &variables) == 1)
 			continue;
 	}
 	return (0);

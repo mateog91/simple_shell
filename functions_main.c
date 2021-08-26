@@ -154,7 +154,7 @@ int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
 
 int main_execute(char **executablePath, char ***tokenDirectory,
 		char ***tokens, char *argv, int countExec, char **line,
-		 c_variables variables)
+		 c_variables *variables)
 {
 		struct stat buf;
 
