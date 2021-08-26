@@ -19,7 +19,7 @@ static void avoid_signal_stop(int sig)
  * main - function that runs a simple shell
  * @argc: Number of arguments gived by user in main shell
  * @argv: params gived by user in main shell
- * @env: Enviroment variables stored like matrix (char **)
+ * @env_original: Enviroment variables stored like matrix (char **)
  * Return: Always 0;
  */
 
@@ -30,9 +30,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env_original)
 	size_t len_line;
 	const char *delim = " \n\t\r";
 	int sign, flag = 0, countExec = 0;
+	c_variables variables = {NULL};
 
 	signal(SIGINT, avoid_signal_stop);
 	env = copy_enviroment(env_original);
+	variables.env = env;
 	while (1)
 	{
 		countExec++;
@@ -55,7 +57,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env_original)
 		main_get_path(&pathPtr, env, &tokenDirectory, &flag);
 /* Execution */
 		if (main_execute(&executablePath, &tokenDirectory, &tokens,
-				argv[0], countExec, &line) == 1)
+				argv[0], countExec, &line, variables) == 1)
 			continue;
 	}
 	return (0);

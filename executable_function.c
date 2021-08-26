@@ -11,7 +11,7 @@
  *
  * Return: 0 on success, -1 on failure.
  */
-int executable_function(char *command, char **tokens)
+int executable_function(char *command, char **tokens, c_variables variables)
 {
 	pid_t child_pid;
 	int status;
@@ -24,7 +24,7 @@ int executable_function(char *command, char **tokens)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(command, tokens, environ) == -1)
+		if (execve(command, tokens, variables.env) == -1)
 		{
 			/*perror("Error: execve failed");*/
 			return (-1);
