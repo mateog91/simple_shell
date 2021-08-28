@@ -30,10 +30,12 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	size_t len_line;
 	const char *delim = " \n\t\r";
 	int sign, flag = 0, countExec = 0;
-
+	custom bus = {0};
 
 	signal(SIGINT, avoid_signal_stop);
 
+	test(&bus);
+	printf("%i", bus.test_int);
 	while (1)
 	{
 		countExec++;

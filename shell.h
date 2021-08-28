@@ -17,7 +17,16 @@ extern char **environ;
 
 #define UNUSED(x) (void)(x)
 
-
+/**
+ * struct variables - struct to store variables
+ * @test_int: Int to test a variable inside of
+ * an structure
+ * 
+ */
+typedef struct variables
+{
+	int test_int;
+} custom;
 /**
  * struct functions - struct to compute buitl in functions
  * @function_name: Name of the function
@@ -30,6 +39,9 @@ typedef struct functions
 	int (*f)(char *);
 
 } built_in;
+
+/* Tests functions*/
+void test(custom *vars);
 
 /* main functions */
 void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
