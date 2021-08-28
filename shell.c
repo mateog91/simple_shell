@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /**
  * avoid_signal_stop - stop ^C signal
  * @sig: input required
@@ -33,30 +32,33 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	int sign, flag = 0, countExec = 0, counter = 0;
 	
 */
- char *prompt = "$ ";
- size_t len_line;
- custom bus = {0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0};
+	char *prompt = "$ ";
+	size_t len_line;
+	custom bus = {0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0};
 
-(void)argv;
+	(void)argv;
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;
 
 	while (1)
 	{
 		bus.execution_number++;
-/*Prompt.*/
+		/*Prompt.*/
 		if (isatty(fileno(stdin)) != 0)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
-/* Get line */
+		/* Get line */
 		bus.sign = getline(&(bus.line), &len_line, stdin);
 		main_get_line(&bus);
 		bus.tokens = create_tokens(bus.line, " \n\t\r");
-
-		printMatrix(bus.tokens);
-		/* This is a test line*/
-		free(bus.tokens);
 		
+		if (bus.tokens != NULL && bus.tokens[0] != NULL)
+		printMatrix(bus.tokens);
+
+		/* Free */
+		free(bus.line);
+		free(bus.tokens);
+		bus.line = NULL;
+		bus.tokens = NULL;
 	}
 	return (0);
 }
-
