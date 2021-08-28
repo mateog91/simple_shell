@@ -52,7 +52,8 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		main_get_line(&bus);
 		bus.tokens = create_tokens(bus.line, " \n\t\r");
 
-		printf("%s\n", bus.tokens[1]);
+		printMatrix(bus.tokens);
+		free(bus.tokens);
 		
 	}
 	return (0);

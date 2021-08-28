@@ -26,6 +26,7 @@ void main_get_line(custom *bus)
 	{
 		if (bus->sign == EOF && errno == 0)
 			_putchar('\n');
+			/*
 		free(bus->line);
 		free(bus->tokens);
 		if (bus->flag == 1)
@@ -34,6 +35,7 @@ void main_get_line(custom *bus)
 			free(bus->tokenDirectory);
 			free(bus->executablePath);
 		}
+		*/
 		exit(EXIT_SUCCESS);
 	}
 }
