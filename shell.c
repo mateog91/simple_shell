@@ -53,6 +53,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.tokens = create_tokens(bus.line, " \n\t\r");
 
 		printMatrix(bus.tokens);
+		/* This is a test line*/
 		free(bus.tokens);
 		
 	}
