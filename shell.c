@@ -54,6 +54,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (bus.tokens != NULL && bus.tokens[0] != NULL)
 		printMatrix(bus.tokens);
 
+		/* built in functions*/
+		if(check_built_in(&bus) == NULL)
+		printf("Is null");
+
 		/* Free */
 		free(bus.line);
 		free(bus.tokens);

@@ -6,7 +6,7 @@
  * Return: status 1 if found 0 if not
  *
  */
-int (*check_built_in(char *str_to_check))(char *str_to_check)
+int (*check_built_in(custom *bus))(custom *bus)
 {
 	int i = 0;
 
@@ -17,14 +17,13 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
 		{"exit", function_exit},
 		{NULL, NULL}
 	};
-
+	printf("here is: %s", bus->tokens[0]);
 	while (cases[i].function_name != NULL)
 	{
-		if (_strcmp(cases[i].function_name, str_to_check) == 0)
+		if (_strcmp(cases[i].function_name, bus->tokens[0]) == 0)
 			break;
 		i++;
 	}
-
 	return (cases[i].f);
 
 }
@@ -34,11 +33,12 @@ int (*check_built_in(char *str_to_check))(char *str_to_check)
  * @str: String to print
  * Return: 1 if is executed
  */
-int ls_function(char *str)
+int ls_function(custom *bus)
 {
-	UNUSED(str);
+	UNUSED(bus);
 
 	/*"%s\n", str);*/
+	printf("case cd");
 	return (1);
 }
 /**
@@ -47,9 +47,9 @@ int ls_function(char *str)
  *
  * Return: 1 if success
  */
-int function_env(char *env)
+int function_env(custom *bus)
 {
-	UNUSED(env);
+	UNUSED(bus);
 	printMatrix(environ);
 	return (1);
 }
@@ -64,8 +64,8 @@ int function_env(char *env)
  *
  * Return: Always 50, a distinctive integer so main functions knows it is exit
  */
-int function_exit(char *command)
+int function_exit(custom *bus)
 {
-	UNUSED(command);
+	UNUSED(bus);
 	return (50);
 }

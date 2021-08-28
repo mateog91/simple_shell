@@ -45,7 +45,7 @@ typedef struct variables
 typedef struct functions
 {
 	char *function_name;
-	int (*f)(char *);
+	int (*f)(custom *);
 
 } built_in;
 
@@ -61,7 +61,7 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 		 char ***tokens, char *argv, int countExec, char **line);
 
 /* function others */
-int (*check_built_in(char *str_to_check))(char *);
+int (*check_built_in(custom *bus))(custom *bus);
 
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
@@ -72,9 +72,9 @@ int _in(char c, const char *str);
 char *_strtok(char *str, const char *delim);
 
 /* Built in functions*/
-int ls_function(char *str);
-int function_env(char *env);
-int function_exit(char *command);
+int ls_function(custom *bus);
+int function_env(custom *bus);
+int function_exit(custom *bus);
 
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
