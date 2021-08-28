@@ -39,7 +39,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	(void)argv;
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;
-
 	while (1)
 	{
 		bus.execution_number++;
@@ -52,12 +51,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.tokens = create_tokens(bus.line, " \n\t\r");
 		
 		if (bus.tokens != NULL && bus.tokens[0] != NULL)
-		printMatrix(bus.tokens);
-
+	{
 		/* built in functions*/
 		if(check_built_in(&bus) == NULL)
-		printf("Is null");
-
+		printf("\n Built in not found \n");
+	}
 		/* Free */
 		free(bus.line);
 		free(bus.tokens);

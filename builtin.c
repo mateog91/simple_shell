@@ -17,15 +17,16 @@ int (*check_built_in(custom *bus))(custom *bus)
 		{"exit", function_exit},
 		{NULL, NULL}
 	};
-	printf("here is: %s", bus->tokens[0]);
 	while (cases[i].function_name != NULL)
 	{
 		if (_strcmp(cases[i].function_name, bus->tokens[0]) == 0)
 			break;
 		i++;
 	}
+	/*executing if found*/
+	if (cases[i].f != NULL)
+	cases[i].f(bus);
 	return (cases[i].f);
-
 }
 
 /**
@@ -49,9 +50,8 @@ int ls_function(custom *bus)
  */
 int function_env(custom *bus)
 {
-	UNUSED(bus);
-	printMatrix(environ);
-	return (1);
+	printMatrix(bus->env);	
+	return (0);
 }
 
 /**
