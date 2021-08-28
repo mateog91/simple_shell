@@ -44,7 +44,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	while (1)
 	{
 		bus.execution_number++;
-/*Prompt*/
+/*Prompt.*/
 		if (isatty(fileno(stdin)) != 0)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 /* Get line */
