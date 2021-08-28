@@ -23,6 +23,7 @@ void printMatrix(char **matrix)
  * @delim: Delim of the function
  * Return: Nothing - void
  */
+/*
 void assignTokens(char *lineReaded, char **tokens, const char *delim)
 {
 	char *token = NULL;
@@ -40,6 +41,7 @@ void assignTokens(char *lineReaded, char **tokens, const char *delim)
 
 
 }
+*/
 /**
  * **create_tokens - use memory dinamicly to create an empty **char
  * @buffer: Buffer used to create tokens
@@ -48,12 +50,11 @@ void assignTokens(char *lineReaded, char **tokens, const char *delim)
  */
 char **create_tokens(char *buffer, const char *delim)
 {
-	char **tokens = NULL;
+	char **tokens = NULL;	
 	int i = 0, j = 0, count_words = 1;
 
 	if (buffer == NULL)
 		return (NULL);
-
 	while (buffer[i] != '\0')
 	{
 		while (delim[j] != '\0')
@@ -70,6 +71,12 @@ char **create_tokens(char *buffer, const char *delim)
 	{
 		perror("Error: tokens not created");
 		return (NULL);
+	}
+	i = 0;
+	while ((tokens[i] = strtok(buffer, delim)) != NULL) 
+	{
+		i++;
+		buffer = NULL;
 	}
 	return (tokens);
 }

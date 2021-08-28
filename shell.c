@@ -25,41 +25,36 @@ static void avoid_signal_stop(int sig)
 
 int main(int argc __attribute__((unused)), char **argv, char **env)
 {
+	/*
 	char *line = NULL, *pathPtr = NULL, *prompt = "$ ", *executablePath;
 	char **tokens = NULL, **tokenDirectory = NULL;
 	size_t len_line;
 	const char *delim = " \n\t\r";
-	int sign, flag = 0, countExec = 0;
-	custom bus = {0};
+	int sign, flag = 0, countExec = 0, counter = 0;
+	
+*/
+ char *prompt = "$ ";
+ size_t len_line;
+ custom bus = {0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0};
 
+(void)argv;
 	signal(SIGINT, avoid_signal_stop);
+	bus.env = env;
 
-	test(&bus);
-	printf("%i", bus.test_int);
 	while (1)
 	{
-		countExec++;
+		bus.execution_number++;
 /*Prompt*/
 		if (isatty(fileno(stdin)) != 0)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 /* Get line */
-		sign = getline(&line, &len_line, stdin);
-		main_get_line(tokenDirectory, tokens, pathPtr, executablePath,
-				line, sign, flag);
-/* Parse line into tokens*/
+		bus.sign = getline(&(bus.line), &len_line, stdin);
+		main_get_line(&bus);
+		bus.tokens = create_tokens(bus.line, " \n\t\r");
 
-		if (main_parse(&tokens, &line, delim) == 1)
-			continue;
-/* check if is built in*/
-		if (main_check_built_in(&tokens, &tokenDirectory, &line,
-					&pathPtr, &executablePath, flag) == 1)
-			continue;
-/* Check if command is executable */
-		main_get_path(&pathPtr, env, &tokenDirectory, &flag);
-/* Execution */
-		if (main_execute(&executablePath, &tokenDirectory, &tokens,
-				argv[0], countExec, &line) == 1)
-			continue;
+		printf("%s\n", bus.tokens[1]);
+		
 	}
 	return (0);
 }
+

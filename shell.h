@@ -26,6 +26,15 @@ extern char **environ;
 typedef struct variables
 {
 	int test_int;
+	char **tokenDirectory;
+	char **tokens;
+	char *pathPtr;
+	char *executablePath;
+	char *line;
+	int sign;
+	int flag;
+	char **env;
+	int execution_number;
 } custom;
 /**
  * struct functions - struct to compute buitl in functions
@@ -44,13 +53,10 @@ typedef struct functions
 void test(custom *vars);
 
 /* main functions */
-void main_get_line(char **tokenDirectory, char **tokens, char *pathPtr,
-		   char *executablePath, char *line, int sign, int flag);
-int main_parse(char ***Dtokens, char **Dline, const char *delim);
+void main_get_line(custom *bus);
 int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 			char **pathPtr, char **executablePath, int flag);
-int main_get_path(char **pathPtr, char **env, char ***tokenDirectory,
-		int *flag);
+int main_get_path(custom *bus);
 int main_execute(char **executablePath, char ***tokenDirectory,
 		 char ***tokens, char *argv, int countExec, char **line);
 
