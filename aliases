@@ -4,3 +4,4 @@
 /*  valgrind --tool=memcheck --vgdb=yes --vgdb-error=0 ./prog */
 /* alias valgr="valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./hsh" */
 /* alias log="git log --all --decorate --oneline --graph" */
+/* alias check="betty *.c *.ch" */

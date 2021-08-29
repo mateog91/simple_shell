@@ -26,7 +26,7 @@ void main_get_line(custom *bus)
 	{
 		if (bus->sign == EOF && errno == 0)
 			_putchar('\n');
-		free(bus->line);	
+		free(bus->line);
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -51,7 +51,7 @@ void main_get_line(custom *bus)
 int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 			char **pathPtr, char **executablePath, int flag)
 {
-	
+
 	int (*f)(char *);
 
 	f = check_built_in(*tokens[0]);
@@ -71,7 +71,7 @@ int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 	}
 	else
 		return (0);
-		
+
 }
 */
 /**
@@ -86,7 +86,7 @@ int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
 /*
 int main_get_path(custom *bus)
 {
-		if (bus->flag != 1) 
+		if (bus->flag != 1)
 		{
 
 			bus->pathPtr = _strdup(getPath(bus->env));
@@ -160,7 +160,6 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 		*tokens = NULL;
 		free(*executablePath);
 		*executablePath = NULL;
-		return (0); 
-		
+		return (0);
 		}
 */

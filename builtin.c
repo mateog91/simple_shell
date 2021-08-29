@@ -50,7 +50,7 @@ int ls_function(custom *bus)
  */
 int function_env(custom *bus)
 {
-	printMatrix(bus->env);	
+	printMatrix(bus->env);
 	return (0);
 }
 
@@ -66,6 +66,8 @@ int function_env(custom *bus)
  */
 int function_exit(custom *bus)
 {
-	UNUSED(bus);
-	return (50);
+	free(bus->line);
+	free(bus->tokens);
+	exit(EXIT_SUCCESS);
+	return (0);
 }
