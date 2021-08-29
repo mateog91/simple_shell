@@ -52,10 +52,10 @@ typedef struct functions
 /* main functions */
 void main_get_line(custom *bus);
 int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
-			char **pathPtr, char **executablePath, int flag);
+						char **pathPtr, char **executablePath, int flag);
 int main_get_path(custom *bus);
 int main_execute(char **executablePath, char ***tokenDirectory,
-		 char ***tokens, char *argv, int countExec, char **line);
+				 char ***tokens, char *argv, int countExec, char **line);
 
 /* Execution functions */
 int executable_function(custom *bus);
@@ -64,6 +64,7 @@ int executable_function(custom *bus);
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
 int is_dir(char *str);
+int exist_dir(char *str);
 
 /* advanced functions */
 int _in(char c, const char *str);
@@ -78,11 +79,11 @@ int function_exit(custom *bus);
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_all(char **tokens, char **tokenDirectory,
-	      char *line, char *pathPtr, char *executablePath);
+			  char *line, char *pathPtr, char *executablePath);
 char **copy_enviroment(char **env);
 void free_matrix(char **matrix);
 void free_exit(char **tokens, char **tokenDirectory, char *line,
-	       char *pathPtr, char *executablePath, int flag);
+			   char *pathPtr, char *executablePath, int flag);
 
 /* Print Functions*/
 int _putchar(char c);

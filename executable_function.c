@@ -13,24 +13,33 @@
  */
 int executable_function(custom *bus)
 {
-	/*
-	int status;*/
 	pid_t child_pid;
 	int status;
 
-	child_pid = fork();
-	if (child_pid == -1)
+	if (is_dir(bus->tokens[0]) == 1)
 	{
-		perror("Error:");
-
+		if (exist_dir(bus->tokens[0]) == 0) /* Exists*/
+		{
+			print_error_not_found(bus, ": not found");
+			return (-1);
+		}
+		if (access(bus->tokens[0], X_OK) != 0) /*Is not executable*/
+		{
+			print_error_not_found(bus, ": Permission denied\n");
+			return (-1);
+		}
+		child_pid = fork(); /* Creating child*/
+		if (child_pid > 0)	/* Is parent */
+			wait(&status);
+		else if (child_pid < 0)
+			print_error_not_found(bus, NULL);
+		else if (execve(bus->tokens[0], bus->tokens, bus->env) == -1)
+		{
+			print_error_not_found(bus, NULL);
+			return (1);
+		}
+		return (0);
 	}
-	if (child_pid == 0)
-	{
-	if (execve(str_concat("/bin/",bus->tokens[0]), bus->tokens, bus->env) == -1)
-		print_error_not_found(bus, NULL);
-	}
-
-	wait(&status);
 	/*
 	child_pid = fork();
 	if (child_pid == -1)

@@ -10,15 +10,15 @@ char *getPath(char **env)
 	char *first_part;
 	int i = 0, j;
 
-/*i advances rows of env matrix */
-/*j advances chars of current string in current row i */
+	/*i advances rows of env matrix */
+	/*j advances chars of current string in current row i */
 
 	first_part = "PATH";
 
-/*Go through vector with env viariablis in search of PATH */
+	/*Go through vector with env viariablis in search of PATH */
 	while (env[i])
 	{
-/* Compares char by char of current with PATH*/
+		/* Compares char by char of current with PATH*/
 		for (j = 0; j < 4; j++)
 		{
 			if (first_part[j] != env[i][j]) /* Break when not = */
@@ -46,8 +46,23 @@ int is_dir(char *str)
 	while (str[j] != '\0')
 	{
 		if (str[j] == '/')
-		return(1);
+			return (1);
 		j++;
 	}
+	return (0);
+}
+/**
+ * exist_dir - function that let us know if exist a dir
+ * @str: dir to check if exists
+ * Return:
+ *        1 when exists
+ *        0 when doesn't exists
+ *
+ **/
+int exist_dir(char *str)
+{
+	struct stat buf;
+	if (stat(str, &buf) == 0)
+		return (1);
 	return (0);
 }

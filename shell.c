@@ -34,6 +34,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	char *prompt = "$ ";
 	size_t len_line;
 	custom bus = {NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0};
+	int need_to_exit = 0;
 
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;
@@ -50,20 +51,20 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.tokens = create_tokens(bus.line, " \n\t\r");
 
 		if (bus.tokens != NULL && bus.tokens[0] != NULL)
-	{
-		/* built in functions*/
-		if(check_built_in(&bus) == NULL)
 		{
-			printf("It says that: [%i]", is_dir(bus.tokens[0]));
-		/*executable_function(&bus);*/
+			/* built in functions*/
+			if (check_built_in(&bus) == NULL)
+			{
+				need_to_exit = executable_function(&bus);
+			}
 		}
-
-	}
 		/* Free */
 		free(bus.line);
 		free(bus.tokens);
 		bus.line = NULL;
 		bus.tokens = NULL;
+		if (need_to_exit == 1)
+			exit(1);
 	}
 	return (0);
 }
