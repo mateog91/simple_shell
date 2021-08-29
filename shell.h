@@ -35,6 +35,7 @@ typedef struct variables
 	int flag;
 	char **env;
 	int execution_number;
+	int status;
 } custom;
 /**
  * struct functions - struct to compute buitl in functions

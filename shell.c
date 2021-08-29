@@ -33,7 +33,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 */
 	char *prompt = "$ ";
 	size_t len_line;
-	custom bus = {NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0};
+	custom bus = {NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0};
 	int need_to_exit = 0;
 
 	signal(SIGINT, avoid_signal_stop);
@@ -64,7 +64,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.line = NULL;
 		bus.tokens = NULL;
 		if (need_to_exit == 1)
-			exit(1);
+			exit(bus.status);
 	}
 	return (0);
 }

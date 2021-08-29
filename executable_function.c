@@ -25,7 +25,8 @@ int executable_function(custom *bus)
 		}
 		if (access(bus->tokens[0], X_OK) != 0) /*Is not executable*/
 		{
-			print_error_not_found(bus, ": Permission denied\n");
+			print_error_not_found(bus, " Permission denied\n");
+			bus->status = 126;
 			return (-1);
 		}
 		child_pid = fork(); /* Creating child*/
@@ -36,6 +37,7 @@ int executable_function(custom *bus)
 		else if (execve(bus->tokens[0], bus->tokens, bus->env) == -1)
 		{
 			print_error_not_found(bus, NULL);
+			bus->status = 127;
 			return (1);
 		}
 		return (0);
