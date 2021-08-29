@@ -62,7 +62,7 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 int executable_function(custom *bus);
 
 /* Path functions */
-char *getPath(char **env);
+char *getPath(custom *bus);
 char *find_command_in_path(char **PATH, char *command);
 int is_dir(char *str);
 int exist_dir(char *str);

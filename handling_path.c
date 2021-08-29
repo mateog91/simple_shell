@@ -5,7 +5,7 @@
  *
  * Return: Pointer to string containing PATH=
  */
-char *getPath(char **env)
+char *getPath(custom *bus)
 {
 	char *first_part;
 	int i = 0, j;
@@ -16,12 +16,12 @@ char *getPath(char **env)
 	first_part = "PATH";
 
 	/*Go through vector with env viariablis in search of PATH */
-	while (env[i])
+	while (bus->env[i])
 	{
 		/* Compares char by char of current with PATH*/
 		for (j = 0; j < 4; j++)
 		{
-			if (first_part[j] != env[i][j]) /* Break when not = */
+			if (first_part[j] != bus->env[i][j]) /* Break when not = */
 			{
 				break;
 			}
@@ -30,7 +30,7 @@ char *getPath(char **env)
 			break;
 		i++;
 	}
-	return (env[i] + 5);
+	return (bus->env[i] + 5);
 }
 
 /**
@@ -74,5 +74,6 @@ int exist_dir(char *str)
 int execution_not_dir(custom *bus)
 {
 	printMatrix(bus->tokens);
+	printf("\nEl path es [%s]\n", getPath(bus));
 	return (0);
 }
