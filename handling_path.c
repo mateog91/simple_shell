@@ -32,3 +32,22 @@ char *getPath(char **env)
 	}
 	return (env[i] + 5);
 }
+
+/**
+ * is_dir - That inform is there is a / in the buffer
+ * @bus: bus of data thatcontains the buffer to check
+ * Return:
+ *         1 if find '/'
+ *         0 if not find '/'
+ * */
+int is_dir(char *str)
+{
+	int j = 0;
+	while (str[j] != '\0')
+	{
+		if (str[j] == '/')
+		return(1);
+		j++;
+	}
+	return (0);
+}

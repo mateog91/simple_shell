@@ -53,7 +53,11 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	{
 		/* built in functions*/
 		if(check_built_in(&bus) == NULL)
-		executable_function(&bus);
+		{
+			printf("It says that: [%i]", is_dir(bus.tokens[0]));
+		/*executable_function(&bus);*/
+		}
+
 	}
 		/* Free */
 		free(bus.line);

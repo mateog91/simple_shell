@@ -57,18 +57,20 @@ int main_get_path(custom *bus);
 int main_execute(char **executablePath, char ***tokenDirectory,
 		 char ***tokens, char *argv, int countExec, char **line);
 
-/* function others */
-int (*check_built_in(custom *bus))(custom *bus);
+/* Execution functions */
+int executable_function(custom *bus);
 
+/* Path functions */
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
-int executable_function(custom *bus);
+int is_dir(char *str);
 
 /* advanced functions */
 int _in(char c, const char *str);
 char *_strtok(char *str, const char *delim);
 
 /* Built in functions*/
+int (*check_built_in(custom *bus))(custom *bus);
 int ls_function(custom *bus);
 int function_env(custom *bus);
 int function_exit(custom *bus);
