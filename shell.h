@@ -66,6 +66,7 @@ char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
 int is_dir(char *str);
 int exist_dir(char *str);
+int execution_not_dir(custom *bus);
 
 /* advanced functions */
 int _in(char c, const char *str);

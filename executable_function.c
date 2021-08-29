@@ -32,7 +32,7 @@ int executable_function(custom *bus)
 		child_pid = fork(); /* Creating child*/
 		if (child_pid > 0)	/* Is parent */
 			wait(&status);
-		else if (child_pid < 0)
+		else if (child_pid < 0) /* Error creating child*/
 			print_error_not_found(bus, NULL);
 		else if (execve(bus->tokens[0], bus->tokens, bus->env) == -1)
 		{
@@ -40,23 +40,9 @@ int executable_function(custom *bus)
 			bus->status = 127;
 			return (1);
 		}
-		return (0);
 	}
-	/*
-	child_pid = fork();
-	if (child_pid == -1)
-	{
-		perror("Error:");
+	else
+	execution_not_dir(bus);
 
-	}
-	if (child_pid == 0)
-	{
-		if (execve(bus->tokens[0], bus->tokens, bus->env) == -1)
-		{
-
-		}
-	}
-	*/
-	/*wait(&status);*/
 	return (0);
 }

@@ -66,3 +66,13 @@ int exist_dir(char *str)
 		return (1);
 	return (0);
 }
+/**
+ * 
+ * 
+ * 
+ **/
+int execution_not_dir(custom *bus)
+{
+	printMatrix(bus->tokens);
+	return (0);
+}
