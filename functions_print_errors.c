@@ -7,22 +7,19 @@
  * @countExec: Int that describe number of times execute the loop
  */
 
-void print_error_not_found(char *argv0, char *tokens0, int countExec)
+void print_error_not_found(custom *bus, char *custom_error)
 {
 
-	_puts2(argv0);
+	_puts2(bus->arguments[0]);
 	_puts2(": ");
-	print_number(countExec);
+	print_number(bus->execution_number);
 	_puts2(": ");
-	_puts2(tokens0);
-	if (errno != 0)
+	_puts2(bus->tokens[0]);
+	if (custom_error == NULL)
 	{
-		/*printf("errno value is: %i\n", errno);*/
-		_puts2(": ");
 		perror("");
-		errno = 0;
-		exit(EXIT_FAILURE);
 	}
 	else
-		puts(": not found");
+		_puts(custom_error);
+
 }

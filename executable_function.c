@@ -11,8 +11,10 @@
  *
  * Return: 0 on success, -1 on failure.
  */
-int executable_function(char *command, char **tokens)
+int executable_function(custom *bus)
 {
+	/*
+	int status;*/
 	pid_t child_pid;
 	int status;
 
@@ -20,16 +22,30 @@ int executable_function(char *command, char **tokens)
 	if (child_pid == -1)
 	{
 		perror("Error:");
-		return (1);
+
 	}
 	if (child_pid == 0)
 	{
-		if (execve(command, tokens, environ) == -1)
+	if (execve(str_concat("/bin/",bus->tokens[0]), bus->tokens, bus->env) == -1)
+		print_error_not_found(bus, NULL);
+	}
+
+	wait(&status);
+	/*
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror("Error:");
+
+	}
+	if (child_pid == 0)
+	{
+		if (execve(bus->tokens[0], bus->tokens, bus->env) == -1)
 		{
-			/*perror("Error: execve failed");*/
-			return (-1);
+
 		}
 	}
-	wait(&status);
+	*/
+	/*wait(&status);*/
 	return (0);
 }

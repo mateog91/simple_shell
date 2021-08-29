@@ -30,15 +30,14 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	size_t len_line;
 	const char *delim = " \n\t\r";
 	int sign, flag = 0, countExec = 0, counter = 0;
-	
 */
 	char *prompt = "$ ";
 	size_t len_line;
-	custom bus = {0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0};
+	custom bus = {NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0};
 
-	(void)argv;
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;
+	bus.arguments = argv;
 	while (1)
 	{
 		bus.execution_number++;
@@ -49,12 +48,12 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.sign = getline(&(bus.line), &len_line, stdin);
 		main_get_line(&bus);
 		bus.tokens = create_tokens(bus.line, " \n\t\r");
-		
+
 		if (bus.tokens != NULL && bus.tokens[0] != NULL)
 	{
 		/* built in functions*/
 		if(check_built_in(&bus) == NULL)
-		printf("\n Built in not found \n");
+		executable_function(&bus);
 	}
 		/* Free */
 		free(bus.line);

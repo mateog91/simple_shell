@@ -21,11 +21,11 @@ extern char **environ;
  * struct variables - struct to store variables
  * @test_int: Int to test a variable inside of
  * an structure
- * 
+ *
  */
 typedef struct variables
 {
-	int test_int;
+	char **arguments;
 	char **tokenDirectory;
 	char **tokens;
 	char *pathPtr;
@@ -49,9 +49,6 @@ typedef struct functions
 
 } built_in;
 
-/* Tests functions*/
-void test(custom *vars);
-
 /* main functions */
 void main_get_line(custom *bus);
 int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
@@ -65,7 +62,7 @@ int (*check_built_in(custom *bus))(custom *bus);
 
 char *getPath(char **env);
 char *find_command_in_path(char **PATH, char *command);
-int executable_function(char *command, char **tokens);
+int executable_function(custom *bus);
 
 /* advanced functions */
 int _in(char c, const char *str);
@@ -97,7 +94,7 @@ int _strlen(char *str);
 
 /* Errors print functions*/
 
-void print_error_not_found(char *argv0, char *tokens0, int countExec);
+void print_error_not_found(custom *bus, char *custom_error);
 
 /* String Malloc functions */
 char *str_concat(char *s1, char *s2);
