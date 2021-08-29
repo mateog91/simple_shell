@@ -46,6 +46,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		if (isatty(fileno(stdin)) != 0)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 		/* Get line */
+		errno = 0;
 		bus.sign = getline(&(bus.line), &len_line, stdin);
 		main_get_line(&bus);
 		bus.tokens = create_tokens(bus.line, " \n\t\r");

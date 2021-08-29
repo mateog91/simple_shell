@@ -50,7 +50,7 @@ void assignTokens(char *lineReaded, char **tokens, const char *delim)
  */
 char **create_tokens(char *buffer, const char *delim)
 {
-	char **tokens = NULL;	
+	char **tokens = NULL;
 	int i = 0, j = 0, count_words = 1;
 
 	if (buffer == NULL)
@@ -73,7 +73,7 @@ char **create_tokens(char *buffer, const char *delim)
 		return (NULL);
 	}
 	i = 0;
-	while ((tokens[i] = strtok(buffer, delim)) != NULL) 
+	while ((tokens[i] = strtok(buffer, delim)) != NULL)
 	{
 		i++;
 		buffer = NULL;

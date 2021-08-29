@@ -24,7 +24,9 @@ void main_get_line(custom *bus)
 {
 	if (bus->sign < 0) /* Is EOF ?*/
 	{
-		if (bus->sign == EOF && errno == 0)
+		if (errno != 0)
+			perror("");
+		else if (bus->sign == EOF) /*CTRL ^ d event*/
 			_putchar('\n');
 		free(bus->line);
 		exit(EXIT_SUCCESS);

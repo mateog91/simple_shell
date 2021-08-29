@@ -73,7 +73,9 @@ int exist_dir(char *str)
  **/
 int execution_not_dir(custom *bus)
 {
-	printMatrix(bus->tokens);
-	printf("\nEl path es [%s]\n", getPath(bus));
+	char *copy_path;
+	copy_path = _strdup(getPath(bus));
+	bus->tokenDirectory = create_tokens(copy_path, ":");
+	free(copy_path);
 	return (0);
 }
