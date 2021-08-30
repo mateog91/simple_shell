@@ -81,6 +81,11 @@ int execution_not_dir(custom *bus)
 				break;
 			}
 		}
+		if (tokensDirectory == NULL || tokensDirectory[i] == NULL)
+		{
+			bus->status = 127;
+			print_error_not_found(bus, ": not found");
+		}
 		free(copy_path);
 	}
 	free(tokensDirectory);
