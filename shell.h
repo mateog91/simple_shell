@@ -18,21 +18,26 @@ extern char **environ;
 #define UNUSED(x) (void)(x)
 
 /**
- * struct variables - struct to store variables
- * @test_int: Int to test a variable inside of
- * an structure
- *
- */
+ * struct variables - struct to store variables used in the shell project
+ * @arguments: argv get in the main
+ * @tokenDirectory: matrix to store a tokenized path
+ * @tokens: matrix to store a tokenized command input
+ * @line: command gived by the user
+ * @sign: variable used to check status of line
+ * @env: variable to store enviroment matrix getting in main
+ * @execution_number: number that represent the number of interactions
+ * taken in the shell execution
+ * @status: Possible status to use with exit function
+ * @need_to_exit: variable that inform if is necessary kill a child process
+ * in an abnormal way
+ **/
 typedef struct variables
 {
 	char **arguments;
 	char **tokenDirectory;
 	char **tokens;
-	char *pathPtr;
-	char *executablePath;
 	char *line;
 	int sign;
-	int flag;
 	char **env;
 	int execution_number;
 	int status;
@@ -53,21 +58,16 @@ typedef struct functions
 
 /* main functions */
 void main_get_line(custom *bus);
-int main_check_built_in(char ***tokens, char ***tokenDirectory, char **line,
-						char **pathPtr, char **executablePath, int flag);
-int main_get_path(custom *bus);
-int main_execute(char **executablePath, char ***tokenDirectory,
-				 char ***tokens, char *argv, int countExec, char **line);
 
 /* Execution functions */
 int executable_function(custom *bus, int selected, char *buffer);
+int execution_not_dir(custom *bus);
 
 /* Path functions */
 char *getPath(custom *bus);
 char *find_command_in_path(char **PATH, char *command);
 int is_dir(custom *bus);
 int exist_dir(char *str);
-int execution_not_dir(custom *bus);
 
 /* advanced functions */
 int _in(char c, const char *str);
@@ -75,18 +75,13 @@ char *_strtok(char *str, const char *delim);
 
 /* Built in functions*/
 int (*check_built_in(custom *bus))(custom *bus);
-int ls_function(custom *bus);
 int function_env(custom *bus);
 int function_exit(custom *bus);
 
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void free_all(char **tokens, char **tokenDirectory,
-			  char *line, char *pathPtr, char *executablePath);
 char **copy_enviroment(char **env);
 void free_matrix(char **matrix);
-void free_exit(char **tokens, char **tokenDirectory, char *line,
-			   char *pathPtr, char *executablePath, int flag);
 
 /* Print Functions*/
 int _putchar(char c);
@@ -108,7 +103,6 @@ char *_strdup(char *str);
 
 /* Functions that were in main */
 void printMatrix(char **matrix);
-void assignTokens(char *lineReaded, char **tokens, const char *delim);
 char **create_tokens(char *buffer, const char *delim);
 
 #endif /* _SHELL_H_ */

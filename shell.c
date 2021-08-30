@@ -26,7 +26,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 {
 	char *prompt = "$ ";
 	size_t len_line;
-	custom bus = {NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0};
+	custom bus = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0};
 
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;

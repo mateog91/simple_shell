@@ -16,32 +16,7 @@ void printMatrix(char **matrix)
 		i++;
 	}
 }
-/**
- * assignTokens - Function that fill a **char with a parse resource
- * @lineReaded: Buffer readed by stdi
- * @tokens: **char to fill
- * @delim: Delim of the function
- * Return: Nothing - void
- */
-/*
-void assignTokens(char *lineReaded, char **tokens, const char *delim)
-{
-	char *token = NULL;
-	int count = 0;
 
-	token = strtok(lineReaded, delim);
-	tokens[count] = token;
-	while (token != NULL)
-	{
-		count++;
-		token = strtok(NULL, delim);
-		tokens[count] = token;
-	}
-	tokens[count] = NULL;
-
-
-}
-*/
 /**
  * **create_tokens - use memory dinamicly to create an empty **char
  * @buffer: Buffer used to create tokens

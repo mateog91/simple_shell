@@ -2,9 +2,9 @@
 
 /**
  * print_error_not_found - Handle the printing errors
- * @argv0: Input to thhe executable file
- * @tokens0: Command typed by the user
- * @countExec: Int that describe number of times execute the loop
+ * @bus: bus of data to process
+ * @custom_error: error to print in specific situations
+ * Return: Void
  */
 
 void print_error_not_found(custom *bus, char *custom_error)

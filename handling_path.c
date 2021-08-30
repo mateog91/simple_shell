@@ -1,17 +1,13 @@
 #include "shell.h"
 /**
- * *getPath - get buffer contained in route PATH
- * @env: Matrix containing enviroment variables
- *
+ **getPath - get buffer contained in route PATH
+ * @bus: Bus of data to processing
  * Return: Pointer to string containing PATH=
- */
+ **/
 char *getPath(custom *bus)
 {
 	char *first_part;
 	int i = 0, j;
-
-	/*i advances rows of env matrix */
-	/*j advances chars of current string in current row i */
 
 	first_part = "PATH";
 
@@ -35,14 +31,15 @@ char *getPath(custom *bus)
 
 /**
  * is_dir - That inform is there is a / in the buffer
- * @bus: bus of data thatcontains the buffer to check
+ * @bus: bus of data that contains the buffer to check
  * Return:
  *         1 if find '/'
  *         0 if not find '/'
- * */
+ **/
 int is_dir(custom *bus)
 {
 	int j = 0;
+
 	while (bus->tokens[0][j] != '\0')
 	{
 		if (bus->tokens[0][j] == '/')
@@ -62,6 +59,7 @@ int is_dir(custom *bus)
 int exist_dir(char *str)
 {
 	struct stat buf;
+
 	if (stat(str, &buf) == 0)
 		return (1);
 	return (0);

@@ -1,9 +1,11 @@
 #include "shell.h"
 
 /**
- * executable_function - executes a command given a matrix tokens
- * @command: A string with the command to be executed
- * @tokens: Matrix with the arguments to be run with the command
+ * executable_function - executes a command given in a dir concatenation
+ * @bus: bus of data to process
+ * @selected: selection betwwen case if command started with dir or not
+ * @buffer: Buffer only useful when is needed to compute a calculated path to
+ * execute the function
  *
  * Description:
  * Runs a function in a child process given the command and the arguments
@@ -26,18 +28,13 @@ int executable_function(custom *bus, int selected, char *buffer)
 		print_error_not_found(bus, ": not found");
 		return (-1);
 	}
-
 	if (access(command, X_OK) != 0) /*Is not executable*/
 	{
 		print_error_not_found(bus, " Permission denied\n");
 		bus->status = 126;
 		return (-1);
 	}
-
 	child_pid = fork(); /* Creating child*/
-	/*
-	printf("%s", command);
-	return (0);*/
 	if (child_pid > 0) /* Is parent */
 		wait(&status);
 	else if (child_pid < 0) /* Error creating child*/
@@ -54,9 +51,10 @@ int executable_function(custom *bus, int selected, char *buffer)
 	return (0);
 }
 /**
- * 
- * 
- * 
+ * execution_not_dir - function that execute a command not gived
+ * like a dir concatenation
+ * @bus: Bus of data to process
+ * Return: Always 0
  **/
 int execution_not_dir(custom *bus)
 {
