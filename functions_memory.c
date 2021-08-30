@@ -41,58 +41,58 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	return (pointer);
 }
-
 /**
- * free_all - Frees all allocated memory variables
- * @tokens: Matrix with Tokenized line
- * @tokenDirectory: Matrix with Tokenized Path
- * @line: stdio input variable
- * @pathPtr: Copy of Path envirometn variable
- * @executablePath: Path concatenated with command
- * Return: Nothing
+ * printMatrix - Print element by element in a gived Matrix
+ * @matrix: Memory Address of a matrix
+ * Return: Void
  */
-void free_all(char **tokens, char **tokenDirectory,
-	      char *line, char *pathPtr, char *executablePath)
+
+void printMatrix(char **matrix)
 {
-	if (tokens)
+	int i = 0;
+
+	while (matrix[i] != NULL)
 	{
-		free(tokens);
-		tokens = NULL;
-	}
-	if (tokenDirectory)
-	{
-		free(tokenDirectory);
-		tokenDirectory = NULL;
-	}
-	if (line)
-	{
-		free(line);
-		line = NULL;
-	}
-	if (pathPtr)
-	{
-		free(pathPtr);
-		pathPtr = NULL;
-	}
-	if (executablePath)
-	{
-		free(executablePath);
-		executablePath = NULL;
+		_puts(matrix[i]);
+		i++;
 	}
 }
 
-
-void free_exit(char **tokens, char **tokenDirectory, char *line,
-	       char *pathPtr, char *executablePath, int flag)
+/**
+ * **create_tokens - use memory dinamicly to create an empty **char
+ * @buffer: Buffer used to create tokens
+ * @delim: Delim of the function
+ * Return: empty matrix where will be store parse data
+ */
+char **create_tokens(char *buffer, const char *delim)
 {
-	free(line);
-	free(tokens);
-	if (flag == 1)
-	{
-		free(pathPtr);
-		free(tokenDirectory);
-		free(executablePath);
-	}
-	exit(EXIT_SUCCESS);
+	char **tokens = NULL;
+	int i = 0, j = 0, count_words = 1;
 
+	if (buffer == NULL)
+		return (NULL);
+	while (buffer[i] != '\0')
+	{
+		while (delim[j] != '\0')
+		{
+			if (buffer[i] == delim[j])
+				count_words++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	tokens = malloc(sizeof(buffer) * (count_words + 1));
+	if (tokens == NULL)
+	{
+		perror("Error: tokens not created");
+		return (NULL);
+	}
+	i = 0;
+	while ((tokens[i] = strtok(buffer, delim)) != NULL)
+	{
+		i++;
+		buffer = NULL;
+	}
+	return (tokens);
 }

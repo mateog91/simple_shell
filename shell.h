@@ -78,8 +78,8 @@ int function_exit(custom *bus);
 
 /* Manage memory functions */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char **copy_enviroment(char **env);
-void free_matrix(char **matrix);
+void printMatrix(char **matrix);
+char **create_tokens(char *buffer, const char *delim);
 
 /* Print Functions*/
 int _putchar(char c);
@@ -99,8 +99,8 @@ void print_error_not_found(custom *bus, char *custom_error);
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
 
-/* Functions that were in main */
-void printMatrix(char **matrix);
-char **create_tokens(char *buffer, const char *delim);
+/* Functions to handle env */
+char **copy_enviroment(char **env);
+void free_matrix(char **matrix);
 
 #endif /* _SHELL_H_ */
