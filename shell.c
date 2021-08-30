@@ -25,7 +25,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 {
 	char *prompt = "$ ";
 	size_t len_line;
-	custom bus = {NULL, NULL, NULL, 0, NULL, 0, 0, 0};
+	custom bus = {NULL, NULL, NULL, 0, NULL, 0, 0, 0, 0};
 
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;
@@ -34,7 +34,10 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	{
 		bus.execution_number++;
 		if (isatty(fileno(stdin)) != 0)
+		{
+			bus.interactive = 1;
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
+		}
 		errno = 0;
 		bus.sign = getline(&(bus.line), &len_line, stdin);
 		main_get_line(&bus);

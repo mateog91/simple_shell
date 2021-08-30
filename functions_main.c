@@ -13,10 +13,10 @@ void main_get_line(custom *bus)
 {
 	if (bus->sign < 0) /* Is EOF ?*/
 	{
-		if (errno != 0)
+		if (errno)
 			perror("");
-		else if (bus->sign == EOF) /*CTRL ^ d event*/
-			_putchar('\n');
+		else if (bus->sign == EOF && bus->interactive == 1) /*CTRL ^ d event*/
+			write(STDOUT_FILENO, "\n", 1);
 		free(bus->line);
 		exit(EXIT_SUCCESS);
 	}

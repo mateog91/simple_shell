@@ -29,6 +29,7 @@ extern char **environ;
  * @status: Possible status to use with exit function
  * @need_to_exit: variable that inform if is necessary kill a child process
  * in an abnormal way
+ * @interactive: variable to identify if its running in interactive mode
  **/
 typedef struct variables
 {
@@ -40,6 +41,7 @@ typedef struct variables
 	int execution_number;
 	int status;
 	int need_to_exit;
+	int interactive;
 } custom;
 /**
  * struct functions - struct to compute buitl in functions
