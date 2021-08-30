@@ -40,12 +40,12 @@ char *getPath(custom *bus)
  *         1 if find '/'
  *         0 if not find '/'
  * */
-int is_dir(char *str)
+int is_dir(custom *bus)
 {
 	int j = 0;
-	while (str[j] != '\0')
+	while (bus->tokens[0][j] != '\0')
 	{
-		if (str[j] == '/')
+		if (bus->tokens[0][j] == '/')
 			return (1);
 		j++;
 	}
@@ -64,18 +64,5 @@ int exist_dir(char *str)
 	struct stat buf;
 	if (stat(str, &buf) == 0)
 		return (1);
-	return (0);
-}
-/**
- * 
- * 
- * 
- **/
-int execution_not_dir(custom *bus)
-{
-	char *copy_path;
-	copy_path = _strdup(getPath(bus));
-	bus->tokenDirectory = create_tokens(copy_path, ":");
-	free(copy_path);
 	return (0);
 }

@@ -59,12 +59,12 @@ int main_execute(char **executablePath, char ***tokenDirectory,
 				 char ***tokens, char *argv, int countExec, char **line);
 
 /* Execution functions */
-int executable_function(custom *bus);
+int executable_function(custom *bus, int selected, char *buffer);
 
 /* Path functions */
 char *getPath(custom *bus);
 char *find_command_in_path(char **PATH, char *command);
-int is_dir(char *str);
+int is_dir(custom *bus);
 int exist_dir(char *str);
 int execution_not_dir(custom *bus);
 

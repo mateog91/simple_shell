@@ -54,7 +54,12 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		{
 			/* built in functions*/
 			if (check_built_in(&bus) == NULL)
-				need_to_exit = executable_function(&bus);
+			{
+				if (is_dir(&bus) == 1)
+					need_to_exit = executable_function(&bus, 1, "nothing");
+				else
+					need_to_exit = execution_not_dir(&bus);
+			}
 		}
 		/* Free */
 		free(bus.line);
