@@ -13,7 +13,6 @@ static void avoid_signal_stop(int sig)
 	UNUSED(sig);
 	write(STDIN_FILENO, prompt, _strlen(prompt));
 }
-
 /**
  * main - function that runs a simple shell
  * @argc: Number of arguments gived by user in main shell
@@ -26,7 +25,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 {
 	char *prompt = "$ ";
 	size_t len_line;
-	custom bus = {NULL, NULL, NULL, NULL, 0, NULL, 0, 0, 0};
+	custom bus = {NULL, NULL, NULL, 0, NULL, 0, 0, 0};
 
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;

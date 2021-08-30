@@ -63,9 +63,7 @@ int execution_not_dir(custom *bus)
 	int i;
 	struct stat buf;
 
-	(void)buf;
 	path = getPath(bus);
-
 	if (path != NULL)
 	{
 		copy_path = _strdup(path);
@@ -86,6 +84,5 @@ int execution_not_dir(custom *bus)
 		free(copy_path);
 	}
 	free(tokensDirectory);
-
 	return (0);
 }

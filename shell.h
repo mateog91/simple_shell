@@ -20,7 +20,6 @@ extern char **environ;
 /**
  * struct variables - struct to store variables used in the shell project
  * @arguments: argv get in the main
- * @tokenDirectory: matrix to store a tokenized path
  * @tokens: matrix to store a tokenized command input
  * @line: command gived by the user
  * @sign: variable used to check status of line
@@ -34,7 +33,6 @@ extern char **environ;
 typedef struct variables
 {
 	char **arguments;
-	char **tokenDirectory;
 	char **tokens;
 	char *line;
 	int sign;
