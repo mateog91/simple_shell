@@ -46,6 +46,7 @@ int executable_function(custom *bus, int selected, char *buffer)
 	else if (execve(command, bus->tokens, bus->env) == -1)
 	{
 		print_error_not_found(bus, NULL);
+		bus->need_to_exit = 1;
 		bus->status = 127;
 		return (1);
 	}
@@ -61,29 +62,32 @@ int execution_not_dir(custom *bus)
 {
 	char *path, *copy_path, *merge1 = NULL, *merge2 = NULL;
 	char **tokensDirectory;
-	int i = 0;
+	int i;
 	struct stat buf;
 
 	(void)buf;
 	path = getPath(bus);
-	copy_path = _strdup(path);
-	tokensDirectory = create_tokens(copy_path, ":");
-	while (tokensDirectory != NULL && tokensDirectory[i] != NULL)
+
+	if (path != NULL)
 	{
-		merge1 = str_concat(tokensDirectory[i], "/");
-		merge2 = str_concat(merge1, bus->tokens[0]);
-
-		if (stat(merge2, &buf) == 0)
+		copy_path = _strdup(path);
+		tokensDirectory = create_tokens(copy_path, ":");
+		for (i = 0; tokensDirectory != NULL && tokensDirectory[i] != NULL;
+			i++, free(merge2), free(merge1))
 		{
-			executable_function(bus, 2, merge2);
-			free(merge1);
-			free(merge2);
-			break;
+			merge1 = str_concat(tokensDirectory[i], "/");
+			merge2 = str_concat(merge1, bus->tokens[0]);
+			if (stat(merge2, &buf) == 0)
+			{
+				executable_function(bus, 2, merge2);
+				free(merge2);
+				free(merge1);
+				break;
+			}
 		}
-
-		i++;
+		free(copy_path);
 	}
-	free(copy_path);
+	free(tokensDirectory);
 
 	return (0);
 }
