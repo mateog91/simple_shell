@@ -5,3 +5,11 @@
 /* alias valgr="valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./hsh" */
 /* alias log="git log --all --decorate --oneline --graph" */
 /* alias check="betty *.c *.ch" */
+
+
+git checkout 307a5cd        # check out the commit that you want to reset to 
+git checkout -b fixy        # create a branch named fixy to do the work
+git merge -s ours master    # merge master's history without changing any files
+git checkout master         # switch back to master
+git merge fixy              # and merge in the fixed branch
+git push                    # done, no need to force push!
