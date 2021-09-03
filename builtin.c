@@ -6,7 +6,7 @@
  * Return: status 1 if found 0 if not
  *
  */
-int (*check_built_in(custom *bus))(custom *bus)
+int (*check_built_in(custom * bus))(custom * bus)
 {
 	int i = 0;
 
