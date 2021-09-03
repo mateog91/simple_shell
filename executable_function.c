@@ -16,7 +16,6 @@
 int executable_function(custom *bus, int selected, char *buffer)
 {
 	pid_t child_pid;
-	int status;
 	char *command = NULL;
 
 	if (selected == 1)
@@ -35,8 +34,15 @@ int executable_function(custom *bus, int selected, char *buffer)
 		return (-1);
 	}
 	child_pid = fork(); /* Creating child*/
-	if (child_pid > 0) /* Is parent */
-		wait(&status);
+	if (child_pid > 0)
+	{ /* Is parent */
+		wait(&bus->status);
+		if (WIFEXITED(bus->status) != 0)
+		{
+			bus->status = WEXITSTATUS(bus->status);
+			bus->need_to_exit = 1;
+		}
+	}
 	else if (child_pid < 0) /* Error creating child*/
 		print_error_not_found(bus, NULL);
 
@@ -69,7 +75,7 @@ int execution_not_dir(custom *bus)
 		copy_path = _strdup(path);
 		tokensDirectory = create_tokens(copy_path, ":");
 		for (i = 0; tokensDirectory != NULL && tokensDirectory[i] != NULL;
-			i++, free(merge2), free(merge1))
+			 i++, free(merge2), free(merge1))
 		{
 			merge1 = str_concat(tokensDirectory[i], "/");
 			merge2 = str_concat(merge1, bus->tokens[0]);
