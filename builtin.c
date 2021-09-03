@@ -50,8 +50,18 @@ int function_exit(custom *bus)
 {
 	if (bus->need_to_exit == 0) /* Is built in*/
 	{
+
 		if (bus->tokens[1] != NULL)
+		{
+
 			bus->status = _atoi(bus->tokens[1]);
+			if (bus->status < 0)
+			{
+				bus->status = 2;
+				print_error_not_found(bus, ": Illegal number: ", 2);
+				_puts(bus->tokens[1]);
+			}
+		}
 		free(bus->line);
 		free(bus->tokens);
 	}

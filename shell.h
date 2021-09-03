@@ -96,7 +96,7 @@ int _atoi(char *s);
 
 /* Errors print functions*/
 
-void print_error_not_found(custom *bus, char *custom_error);
+void print_error_not_found(custom *bus, char *custom_error, int selection);
 
 /* String Malloc functions */
 char *str_concat(char *s1, char *s2);

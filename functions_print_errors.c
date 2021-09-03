@@ -4,10 +4,11 @@
  * print_error_not_found - Handle the printing errors
  * @bus: bus of data to process
  * @custom_error: error to print in specific situations
+ * @selection: Variable to use new line with 1 and doesn't use with 2
  * Return: Void
  */
 
-void print_error_not_found(custom *bus, char *custom_error)
+void print_error_not_found(custom *bus, char *custom_error, int selection)
 {
 
 	_puts2(bus->arguments[0]);
@@ -19,7 +20,8 @@ void print_error_not_found(custom *bus, char *custom_error)
 	{
 		perror(": ");
 	}
-	else
+	else if (selection == 1)
 		_puts(custom_error);
-
+	else if (selection == 2)
+		_puts2(custom_error);
 }

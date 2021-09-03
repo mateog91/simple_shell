@@ -24,12 +24,12 @@ int executable_function(custom *bus, int selected, char *buffer)
 		command = buffer;
 	if (exist_dir(command) == 0) /* Exists*/
 	{
-		print_error_not_found(bus, ": not found");
+		print_error_not_found(bus, ": not found", 1);
 		return (-1);
 	}
 	if (access(command, X_OK) != 0) /*Is not executable*/
 	{
-		print_error_not_found(bus, " Permission denied\n");
+		print_error_not_found(bus, " Permission denied\n", 1);
 		bus->status = 126;
 		return (-1);
 	}
@@ -44,11 +44,11 @@ int executable_function(custom *bus, int selected, char *buffer)
 		}
 	}
 	else if (child_pid < 0) /* Error creating child*/
-		print_error_not_found(bus, NULL);
+		print_error_not_found(bus, NULL, 1);
 
 	else if (execve(command, bus->tokens, bus->env) == -1)
 	{
-		print_error_not_found(bus, NULL);
+		print_error_not_found(bus, NULL, 1);
 		bus->need_to_exit = 1;
 		bus->status = 127;
 		return (1);
@@ -90,7 +90,7 @@ int execution_not_dir(custom *bus)
 		if (tokensDirectory == NULL || tokensDirectory[i] == NULL)
 		{
 			bus->status = 127;
-			print_error_not_found(bus, ": not found");
+			print_error_not_found(bus, ": not found", 1);
 		}
 		free(copy_path);
 	}
