@@ -6,15 +6,14 @@
  * Return: status 1 if found 0 if not
  *
  */
-int (*check_built_in(custom * bus))(custom * bus)
+int (*check_built_in(custom *bus))(custom *bus)
 {
 	int i = 0;
 
 	built_in cases[] = {
 		{"env", function_env},
 		{"exit", function_exit},
-		{NULL, NULL}
-	};
+		{NULL, NULL}};
 	while (cases[i].function_name != NULL)
 	{
 		if (_strcmp(cases[i].function_name, bus->tokens[0]) == 0)
@@ -23,7 +22,7 @@ int (*check_built_in(custom * bus))(custom * bus)
 	}
 	/*executing if found*/
 	if (cases[i].f != NULL)
-	cases[i].f(bus);
+		cases[i].f(bus);
 	return (cases[i].f);
 }
 
@@ -49,8 +48,11 @@ int function_env(custom *bus)
  */
 int function_exit(custom *bus)
 {
-	free(bus->line);
-	free(bus->tokens);
-	exit(EXIT_SUCCESS);
+	if (bus->need_to_exit == 0)/* Is built in*/
+	{
+		free(bus->line);
+		free(bus->tokens);
+	}
+	exit(bus->status);
 	return (0);
 }

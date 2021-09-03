@@ -57,7 +57,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.line = NULL;
 		bus.tokens = NULL;
 		if (bus.need_to_exit == 1)
-			exit(bus.status);
+			function_exit(&bus);
 	}
 	return (0);
 }
