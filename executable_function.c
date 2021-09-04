@@ -89,6 +89,7 @@ int execution_not_dir(custom *bus)
 		}
 		if (tokensDirectory == NULL || tokensDirectory[i] == NULL)
 		{
+			bus->need_to_exit = 1;
 			bus->status = 127;
 			print_error_not_found(bus, ": not found", 1);
 		}
