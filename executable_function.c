@@ -25,14 +25,15 @@ int executable_function(custom *bus, int selected, char *buffer)
 	if (exist_dir(command) == 0) /* Exists*/
 	{
 		print_error_not_found(bus, ": not found", 1);
-		return (-1);
-	}
+		bus->need_to_exit = 1;
+		bus->status = 127;
+		return (-1); }
 	if (access(command, X_OK) != 0) /*Is not executable*/
 	{
 		print_error_not_found(bus, " Permission denied\n", 1);
 		bus->status = 126;
-		return (-1);
-	}
+		bus->need_to_exit = 1;
+		return (-1); }
 	child_pid = fork(); /* Creating child*/
 	if (child_pid > 0)
 	{ /* Is parent */
@@ -40,20 +41,16 @@ int executable_function(custom *bus, int selected, char *buffer)
 		if (WIFEXITED(bus->status) != 0)
 		{
 			bus->status = WEXITSTATUS(bus->status);
-			bus->need_to_exit = 1;
-		}
+			bus->need_to_exit = 1; }
 	}
 	else if (child_pid < 0) /* Error creating child*/
 		print_error_not_found(bus, NULL, 1);
-
 	else if (execve(command, bus->tokens, bus->env) == -1)
 	{
 		print_error_not_found(bus, NULL, 1);
 		bus->need_to_exit = 1;
 		bus->status = 127;
-		return (1);
-	}
-
+		return (1);	}
 	return (0);
 }
 /**
