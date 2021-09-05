@@ -25,7 +25,7 @@ char *getPath(custom *bus)
 			break;
 		i++;
 	}
-	return (bus->env[i] + 5);
+	return (bus->env[i]);
 }
 
 /**

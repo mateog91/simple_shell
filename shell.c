@@ -30,6 +30,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 	signal(SIGINT, avoid_signal_stop);
 	bus.env = env;
 	bus.arguments = argv;
+
 	while (1)
 	{
 		bus.execution_number++;
@@ -58,7 +59,6 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.tokens = NULL;
 		if (bus.need_to_exit == 1)
 			function_exit(&bus);
-
 	}
 	return (0);
 }

@@ -68,7 +68,7 @@ int execution_not_dir(custom *bus)
 	path = getPath(bus);
 	if (path != NULL)
 	{
-		copy_path = _strdup(path);
+		copy_path = _strdup(path + 5);
 		tokensDirectory = create_tokens(copy_path, ":");
 		for (i = 0; tokensDirectory != NULL && tokensDirectory[i] != NULL;
 			 i++, free(merge2), free(merge1))
