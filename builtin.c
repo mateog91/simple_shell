@@ -57,13 +57,15 @@ int function_exit(custom *bus)
 			{
 				bus->status = 2;
 				print_error_not_found(bus, ": Illegal number: ", 2);
-				_puts(bus->tokens[1]);
+				_puts2(bus->tokens[1]);
+				_puts2("\n");
 			}
 			else if (bus->status == 0)
 			{
 				bus->status = 2;
 				print_error_not_found(bus, ": Illegal number: ", 2);
-				_puts(bus->tokens[1]);
+				_puts2(bus->tokens[1]);
+				_puts2("\n");
 			}
 		}
 		free(bus->line);
