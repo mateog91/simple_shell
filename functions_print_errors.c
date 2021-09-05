@@ -10,18 +10,18 @@
 
 void print_error_not_found(custom *bus, char *custom_error, int selection)
 {
-
 	_puts2(bus->arguments[0]);
 	_puts2(": ");
 	print_number(bus->execution_number);
 	_puts2(": ");
 	_puts2(bus->tokens[0]);
 	if (custom_error == NULL)
-	{
 		perror(": ");
-	}
 	else if (selection == 1)
-		_puts(custom_error);
+	{
+		_puts2(custom_error);
+		_puts2("\n");
+	}
 	else if (selection == 2)
 		_puts2(custom_error);
 }

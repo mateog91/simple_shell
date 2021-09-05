@@ -22,10 +22,9 @@ int executable_function(custom *bus, int selected, char *buffer)
 		command = bus->tokens[0];
 	else
 		command = buffer;
-	if (exist_dir(command) == 0) /* Exists*/
+	if (exist_dir(command) == 0) /* Not Exists*/
 	{
 		print_error_not_found(bus, ": not found", 1);
-		bus->need_to_exit = 1;
 		bus->status = 127;
 		return (-1);
 	}
@@ -33,7 +32,6 @@ int executable_function(custom *bus, int selected, char *buffer)
 	{
 		print_error_not_found(bus, " Permission denied\n", 1);
 		bus->status = 126;
-		bus->need_to_exit = 1;
 		return (-1);
 	}
 	child_pid = fork(); /* Creating child*/
@@ -47,7 +45,7 @@ int executable_function(custom *bus, int selected, char *buffer)
 		print_error_not_found(bus, NULL, 1);
 	else if (execve(command, bus->tokens, bus->env) == -1)
 	{
-		print_error_not_found(bus, NULL, 1);
+		print_error_not_found(bus, ": not found", 1);
 		bus->need_to_exit = 1;
 		bus->status = 127;
 		return (1);
