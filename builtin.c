@@ -59,6 +59,12 @@ int function_exit(custom *bus)
 				print_error_not_found(bus, ": Illegal number: ", 2);
 				_puts(bus->tokens[1]);
 			}
+			else if (bus->status == 0)
+			{
+				bus->status = 2;
+				print_error_not_found(bus, ": Illegal number: ", 2);
+				_puts(bus->tokens[1]);
+			}
 		}
 		free(bus->line);
 		free(bus->tokens);
