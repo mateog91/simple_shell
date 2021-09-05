@@ -53,14 +53,7 @@ int function_exit(custom *bus)
 		if (bus->tokens[1] != NULL)
 		{
 			bus->status = _atoi(bus->tokens[1]);
-			if (bus->status < 0)
-			{
-				bus->status = 2;
-				print_error_not_found(bus, ": Illegal number: ", 2);
-				_puts2(bus->tokens[1]);
-				_puts2("\n");
-			}
-			else if (bus->status == 0)
+			if (bus->status <= 0)
 			{
 				bus->status = 2;
 				print_error_not_found(bus, ": Illegal number: ", 2);
