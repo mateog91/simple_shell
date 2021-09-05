@@ -58,6 +58,7 @@ int main(int argc __attribute__((unused)), char **argv, char **env)
 		bus.tokens = NULL;
 		if (bus.need_to_exit == 1)
 			function_exit(&bus);
+
 	}
 	return (0);
 }

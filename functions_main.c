@@ -18,6 +18,6 @@ void main_get_line(custom *bus)
 		else if (bus->sign == EOF && bus->interactive == 1) /*CTRL ^ d event*/
 			write(STDOUT_FILENO, "\n", 1);
 		free(bus->line);
-		exit(EXIT_SUCCESS);
+		exit(bus->status);
 	}
 }
