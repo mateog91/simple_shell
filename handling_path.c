@@ -10,11 +10,10 @@ char *getPath(custom *bus)
 	int i = 0, j;
 
 	first_part = "PATH";
-
-	/*Go through vector with env viariablis in search of PATH */
+	if (bus->env == NULL)
+		return (NULL);
 	while (bus->env[i])
 	{
-		/* Compares char by char of current with PATH*/
 		for (j = 0; j < 4; j++)
 		{
 			if (first_part[j] != bus->env[i][j]) /* Break when not = */
