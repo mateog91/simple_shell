@@ -90,6 +90,11 @@ int execution_not_dir(custom *bus)
 		}
 		free(copy_path);
 	}
+	else
+	{
+		print_error_not_found(bus, ": not found", 1);
+		bus->status = 127;
+	}
 	free(tokensDirectory);
 	return (0);
 }
